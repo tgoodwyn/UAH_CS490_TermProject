@@ -14,24 +14,22 @@ namespace UAH_CS490
     public partial class ThreadSwitcher : Form
     {
         static string homeDir = Directory.GetParent(Application.StartupPath).Parent.Parent.FullName;
-        string startFile = Path.Combine(homeDir, "TestData.csv");
+        string startFilePath = Path.Combine(homeDir, "TestData.csv");
+        string currentlySelectedFilePath;
+
+        List<ProcessFromFile> proccessesFromFile = new List<ProcessFromFile>();
         public ThreadSwitcher()
         {
-            //var filePath = ".";
-            //string parent = Directory.GetParent(filePath).Parent.Parent.FullName;
-            //string target = Path.Combine(parent, "TestData.csv");
-            bool exists = File.Exists(startFile);
-            Console.WriteLine(exists);
-            //var files = Directory.GetFiles(parent);
-            //foreach (string fileName in files)
-            //    Console.WriteLine(fileName);
+            currentlySelectedFilePath = startFilePath;
+
 
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            var filedata = proccessesFromFile;
+            dataGridView1.DataSource = filedata;
         }
 
         private void fileSelectBtn_Click(object sender, EventArgs e)
@@ -65,34 +63,59 @@ namespace UAH_CS490
             MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
         }
 
-        private void babyFarts_Click(object sender, EventArgs e)
+        private void readFileBtn_click(object sender, EventArgs e)
         {
-
+            readCSV();
         }
 
         private void appendDataBtn_Click(object sender, EventArgs e)
         {
             using (TextWriter tw = new StreamWriter("example.txt"))
             {
-                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
-                    {
-                        tw.Write($"{dataGridView1.Rows[i].Cells[j].Value.ToString()}");
 
-                        if (j != dataGridView1.Columns.Count - 1)
-                        {
-                            tw.Write(",");
-                        }
-                    }
-                    tw.WriteLine();
-                }
+                tw.Write(",");
+
+                tw.WriteLine();
+
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void readCSV()
         {
+            string path = currentlySelectedFilePath;
 
+            string[] lines = System.IO.File.ReadAllLines(path);
+            foreach (string line in lines)
+            {
+                string[] data = new string[4];
+                string[] columns = line.Split(',');
+
+                for (int i = 0; i < 4; i++)
+                {
+                    data[i] = columns[i].Trim(' ');
+                    Console.WriteLine(data[i]);
+                }
+
+                proccessesFromFile.Add(new ProcessFromFile
+                {
+                    arrivalTime = int.Parse(data[0]),
+                    procName = data[1],
+                    serviceTime = int.Parse(data[2]),
+                    priority = int.Parse(data[3])
+                });
+            }
         }
+
+
     }
 }
+
+
+//var filePath = ".";
+//string parent = Directory.GetParent(filePath).Parent.Parent.FullName;
+//string target = Path.Combine(parent, "TestData.csv");
+//bool exists = File.Exists(startFilePath);
+//Console.WriteLine(exists);
+//var files = Directory.GetFiles(parent);
+//foreach (string fileName in files)
+//    Console.WriteLine(fileName);
