@@ -13,20 +13,24 @@ namespace UAH_CS490
 {
     public partial class ThreadSwitcher : Form
     {
-        static string homeDir = Directory.GetParent(Application.StartupPath).Parent.Parent.FullName;
-        string startFilePath = Path.Combine(homeDir, "TestData.csv");
-        string currentlySelectedFilePath;
 
-        List<ProcessFromFile> proccessesFromFile = new List<ProcessFromFile>();
+        static readonly string homeDir = Directory.GetParent(Application.StartupPath).Parent.Parent.FullName; //path to solution directory, also has our default data file
+        static readonly string defaultFilePath = Path.Combine(homeDir, "TestData.csv"); // full path to default data file
+
+
+        // variables
+        string currentlySelectedFilePath; // this will hold the path to whatever data file the user selects
+
+        // data structures
+        List<ProcessFromFile> proccessesFromFile = new List<ProcessFromFile>(); // we will need a list for holding the process objects read in from the data file
+
         public ThreadSwitcher()
         {
-            currentlySelectedFilePath = startFilePath;
-
-
+            currentlySelectedFilePath = defaultFilePath;
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void loadQueueBtn_Click(object sender, EventArgs e)
         {
             var filedata = proccessesFromFile;
             dataGridView1.DataSource = filedata;
@@ -80,6 +84,20 @@ namespace UAH_CS490
             }
         }
 
+
+
+        private void startSysBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stopSysBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        // helper functions
         private void readCSV()
         {
             string path = currentlySelectedFilePath;
@@ -105,8 +123,6 @@ namespace UAH_CS490
                 });
             }
         }
-
-
     }
 }
 
