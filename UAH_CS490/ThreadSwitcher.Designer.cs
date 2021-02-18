@@ -40,39 +40,41 @@ namespace UAH_CS490
             this.fileInfo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.currentPathLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.QueueBox)).BeginInit();
             this.SuspendLayout();
             // 
             // loadQueueBtn
             // 
-            this.loadQueueBtn.Location = new System.Drawing.Point(294, 415);
+            this.loadQueueBtn.Location = new System.Drawing.Point(737, 270);
             this.loadQueueBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.loadQueueBtn.Name = "loadQueueBtn";
             this.loadQueueBtn.Size = new System.Drawing.Size(188, 71);
             this.loadQueueBtn.TabIndex = 0;
-            this.loadQueueBtn.Text = "Load Queue";
+            this.loadQueueBtn.Text = "Load Process Queue";
             this.loadQueueBtn.UseVisualStyleBackColor = true;
             this.loadQueueBtn.Click += new System.EventHandler(this.loadQueueBtn_Click);
             // 
             // appendDataBtn
             // 
-            this.appendDataBtn.Location = new System.Drawing.Point(294, 225);
+            this.appendDataBtn.Location = new System.Drawing.Point(50, 608);
             this.appendDataBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.appendDataBtn.Name = "appendDataBtn";
             this.appendDataBtn.Size = new System.Drawing.Size(184, 54);
             this.appendDataBtn.TabIndex = 1;
-            this.appendDataBtn.Text = "Append data to file";
+            this.appendDataBtn.Text = "Overwite current file";
             this.appendDataBtn.UseVisualStyleBackColor = true;
             this.appendDataBtn.Click += new System.EventHandler(this.appendDataBtn_Click);
             // 
             // randomDataBtn
             // 
-            this.randomDataBtn.Location = new System.Drawing.Point(62, 222);
+            this.randomDataBtn.Location = new System.Drawing.Point(354, 608);
             this.randomDataBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.randomDataBtn.Name = "randomDataBtn";
             this.randomDataBtn.Size = new System.Drawing.Size(195, 55);
             this.randomDataBtn.TabIndex = 2;
-            this.randomDataBtn.Text = "Generate random data";
+            this.randomDataBtn.Text = "Save to new file";
             this.randomDataBtn.UseVisualStyleBackColor = true;
             // 
             // fileSelectBtn
@@ -99,7 +101,7 @@ namespace UAH_CS490
             // 
             // readFileBtn
             // 
-            this.readFileBtn.Location = new System.Drawing.Point(62, 415);
+            this.readFileBtn.Location = new System.Drawing.Point(1001, 239);
             this.readFileBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.readFileBtn.Name = "readFileBtn";
             this.readFileBtn.Size = new System.Drawing.Size(152, 71);
@@ -126,7 +128,7 @@ namespace UAH_CS490
             this.QueueBox.AllowUserToResizeRows = false;
             this.QueueBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.QueueBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.QueueBox.Location = new System.Drawing.Point(580, 351);
+            this.QueueBox.Location = new System.Drawing.Point(35, 222);
             this.QueueBox.Name = "QueueBox";
             this.QueueBox.RowHeadersWidth = 62;
             this.QueueBox.RowTemplate.Height = 28;
@@ -161,11 +163,32 @@ namespace UAH_CS490
             this.currentPathLabel.TabIndex = 11;
             this.currentPathLabel.Text = "<filename>";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(189, 561);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(218, 20);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Edit table to add/change data";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(162, 167);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(265, 29);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Data from Selected File";
+            // 
             // ThreadSwitcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 842);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.currentPathLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.fileInfo);
@@ -200,6 +223,8 @@ namespace UAH_CS490
         private System.Windows.Forms.Label fileInfo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label currentPathLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

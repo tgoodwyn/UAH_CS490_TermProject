@@ -63,6 +63,21 @@ namespace UAH_CS490
 
             QueueBox.DataSource = theData;
             return;
+
+        }
+
+        private void exportDTableToCSV()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (DataRow row in theData.Rows)
+            {
+                IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
+                sb.AppendLine(string.Join(",", fields));
+            }
+
+            string exportFP = Path.Combine(homeDir, "export.csv");
+
+            File.WriteAllText(exportFP, sb.ToString());
         }
 
         private void fileSelectBtn_Click(object sender, EventArgs e)
@@ -80,6 +95,8 @@ namespace UAH_CS490
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    filePath = openFileDialog.FileName;
+                    currentlySelectedFilePath = filePath;
                     currentPathLabel.Text = currentlySelectedFilePath;
 
                     //MessageBox.Show("Fail", "", MessageBoxButtons.OK);
@@ -100,6 +117,7 @@ namespace UAH_CS490
 
         private void startSysBtn_Click(object sender, EventArgs e)
         {
+            exportDTableToCSV();
             string field = theData.Rows[0].Field<string>(0);
             fileInfo.Text = field;
         }
