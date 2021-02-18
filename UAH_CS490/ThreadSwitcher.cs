@@ -23,6 +23,7 @@ namespace UAH_CS490
 
         // data structures
         List<ProcessFromFile> proccessesFromFile = new List<ProcessFromFile>(); // we will need a list for holding the process objects read in from the data file
+        DataTable theData = new DataTable();
 
         public ThreadSwitcher()
         {
@@ -30,10 +31,38 @@ namespace UAH_CS490
             InitializeComponent();
         }
 
+        private void ThreadSwitcher_Load(object sender, EventArgs e)
+        {
+            currentPathLabel.Text = currentlySelectedFilePath;
+
+        }
+
         private void loadQueueBtn_Click(object sender, EventArgs e)
         {
-            var filedata = proccessesFromFile;
-            dataGridView1.DataSource = filedata;
+            createDT(currentlySelectedFilePath);
+            //foreach (DataRow row in filedata.Rows)
+            //{
+            //    QueueBox.Rows.Add(row);
+            //}
+        }
+
+        public void createDT(string filePath)
+        {
+            theData = new DataTable();
+
+            theData.Columns.Add("Arrival time");
+            theData.Columns.Add("Service time");
+            theData.Columns.Add("Name");
+            theData.Columns.Add("Priority");
+
+            // Adding the rows
+            File.ReadLines(filePath)
+                .Select(x => x.Split(','))
+                .ToList()
+                .ForEach(line => theData.Rows.Add(line));
+
+            QueueBox.DataSource = theData;
+            return;
         }
 
         private void fileSelectBtn_Click(object sender, EventArgs e)
@@ -51,20 +80,12 @@ namespace UAH_CS490
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
+                    currentPathLabel.Text = currentlySelectedFilePath;
 
-                    //Read the contents of the file into a stream
-                    var fileStream = openFileDialog.OpenFile();
-
-                    using (StreamReader reader = new StreamReader(fileStream))
-                    {
-                        fileContent = reader.ReadToEnd();
-                    }
+                    //MessageBox.Show("Fail", "", MessageBoxButtons.OK);
                 }
             }
 
-            MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
         }
 
         private void readFileBtn_click(object sender, EventArgs e)
@@ -74,21 +95,13 @@ namespace UAH_CS490
 
         private void appendDataBtn_Click(object sender, EventArgs e)
         {
-            using (TextWriter tw = new StreamWriter("example.txt"))
-            {
 
-                tw.Write(",");
-
-                tw.WriteLine();
-
-            }
         }
-
-
 
         private void startSysBtn_Click(object sender, EventArgs e)
         {
-
+            string field = theData.Rows[0].Field<string>(0);
+            fileInfo.Text = field;
         }
 
         private void stopSysBtn_Click(object sender, EventArgs e)
@@ -100,28 +113,39 @@ namespace UAH_CS490
         // helper functions
         private void readCSV()
         {
+            // selected by "File Select" button
             string path = currentlySelectedFilePath;
 
+            // put all lines from CSV into lines[]
             string[] lines = System.IO.File.ReadAllLines(path);
+
+            // iterate over lines[]
+            // copy data from line -> columns[i] -> temp[i] -> new Process object
             foreach (string line in lines)
             {
-                string[] data = new string[4];
+
+                string[] temp = new string[4];
                 string[] columns = line.Split(',');
 
                 for (int i = 0; i < 4; i++)
                 {
-                    data[i] = columns[i].Trim(' ');
-                    Console.WriteLine(data[i]);
+                    temp[i] = columns[i].Trim(' ');
+                    Console.WriteLine(temp[i]);
                 }
 
                 proccessesFromFile.Add(new ProcessFromFile
                 {
-                    arrivalTime = int.Parse(data[0]),
-                    procName = data[1],
-                    serviceTime = int.Parse(data[2]),
-                    priority = int.Parse(data[3])
+                    arrivalTime = int.Parse(temp[0]),
+                    procName = temp[1],
+                    serviceTime = int.Parse(temp[2]),
+                    priority = int.Parse(temp[3])
                 });
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
