@@ -46,18 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ThreadSwitcher.cs">
+    <Compile Include="CPU.cs" />
+    <Compile Include="OS.cs" />
+    <Compile Include="Process.cs" />
+    <Compile Include="ProcessData.cs" />
+    <Compile Include="GUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ThreadSwitcher.Designer.cs">
-      <DependentUpon>ThreadSwitcher.cs</DependentUpon>
+    <Compile Include="GUI.Designer.cs">
+      <DependentUpon>GUI.cs</DependentUpon>
     </Compile>
     <Compile Include="ProcessFromFile.cs" />
     <Compile Include="ProcessInQueue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ThreadSwitcher.resx">
-      <DependentUpon>ThreadSwitcher.cs</DependentUpon>
+    <EmbeddedResource Include="GUI.resx">
+      <DependentUpon>GUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
