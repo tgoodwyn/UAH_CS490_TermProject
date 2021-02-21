@@ -97,6 +97,26 @@ namespace UAH_CS490
             QueueBox.DataSource = dt;
         }
 
+        public void setProcessLabel(string procName)
+        {
+            currentProcLab.Text = procName;
+        }
+
+        public void setTimeRemaining(int time)
+        {
+            timeLeftLab.Text = time.ToString();
+        }
+
+        public void setTotalTime(int time)
+        {
+            totalTimeLab.Text = time.ToString();
+        }
+
+        public void setCompleted(string procName)
+        {
+            completedLab.Text += "\n" + procName;
+        }
+
 
     }
 }

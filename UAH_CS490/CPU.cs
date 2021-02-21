@@ -14,19 +14,29 @@ namespace UAH_CS490
 
         public static void start()
         {
+            OS.idle = false;
             returnControlToOS();
         }
         public async static Task execute(Process currentProccess)
         {
             if (currentProccess.timeElapsed < currentProccess.serviceTime)
             {
+                // this is good
+                int timeLeft = currentProccess.serviceTime - currentProccess.timeElapsed;
+                Program.GUI.setTimeRemaining(timeLeft);
                 await Task.Delay(clockUnit);
                 currentProccess.timeElapsed++;
-            } else if (currentProccess.timeElapsed == currentProccess.serviceTime)
+
+                
+
+
+            }
+            else if (currentProccess.timeElapsed == currentProccess.serviceTime)
             {
                 OS.noDispatch = true;
-                returnControlToOS();
+                Program.GUI.setCompleted(currentProccess.name);
             }
+            returnControlToOS();
 
         }
 

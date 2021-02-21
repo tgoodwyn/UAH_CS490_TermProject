@@ -9,14 +9,13 @@ namespace UAH_CS490
 {
     class OS
     {
-        static int currentTime = 0;
-        static int stopTime = 100;
         static Process currentProccess;
         static Queue<Process> processQueue = new Queue<Process>();
         public static DataTable dataFromQueue = new DataTable();
 
         public static bool noDispatch = true;
-
+        public static bool idle = true;
+        public static int currentTime = 0;
 
         public static async void regainControl()
         {
@@ -26,17 +25,31 @@ namespace UAH_CS490
 
         private static async Task kernelExecute()
         {
-            while (currentTime < stopTime)
+            checkForNewArrivals(); // always check for new arrivals to add to the queue
+            OS.currentTime++; // then uptick the clock
+            Program.GUI.setTotalTime(OS.currentTime); // and set its label
+
+            // check if a process has been dispatched
+            if (noDispatch) // if none are currently dispatched, then we'll check to see if any are in the queue
             {
-                checkForNewArrivals();
-                if (noDispatch)
+                if (processQueue.Count > 0) // if queue is not empty, then we'll dispatch
                 {
                     dispatch();
                     noDispatch = false;
+                    updateDT();
+                    await CPU.execute(currentProccess); // the cpu will tick the clock up
                 }
-                await CPU.execute(currentProccess);
-                currentTime++;
+                else // otherwise, we'll go idle
+                {
+                    idle = true;
+                }
+
+            } else // if a process is dispatched, then we will just return control to the CPU after checking for new arrivals
+            {
+                    await CPU.execute(currentProccess); // the cpu will tick the clock up
             }
+
+            
         }
 
         public static void checkForNewArrivals()
@@ -56,14 +69,23 @@ namespace UAH_CS490
                         serviceTime = serviceTime,
                         priority = priority,
                         timeElapsed = 0
-                    }) ;
+                    });
 
                     updateDT();
                 }
             }
 
+
+
         }
 
+
+        public static void dispatch()
+        {
+            currentProccess = processQueue.Dequeue();
+            Program.GUI.setProcessLabel(currentProccess.name);
+
+        }
         public static void updateDT()
         {
             dataFromQueue = new DataTable();
@@ -78,18 +100,6 @@ namespace UAH_CS490
             }
 
             Program.GUI.setSourceForQueueDGV(dataFromQueue);
-        }
-
-        public static void dispatch()
-        {
-            if (processQueue.Peek() != null)
-            {
-                currentProccess = processQueue.Dequeue();
-            }
-            else
-            {
-                Console.WriteLine("all available processes run");
-            }
         }
     }
 }

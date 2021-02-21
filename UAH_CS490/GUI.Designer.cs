@@ -47,6 +47,10 @@ namespace UAH_CS490
             this.currentProcLab = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.timeLeftLab = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.totalTimeLab = new System.Windows.Forms.Label();
+            this.completedLab = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FileBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QueueBox)).BeginInit();
             this.SuspendLayout();
@@ -163,7 +167,7 @@ namespace UAH_CS490
             // 
             // conversionRateField
             // 
-            this.conversionRateField.Location = new System.Drawing.Point(731, 249);
+            this.conversionRateField.Location = new System.Drawing.Point(718, 249);
             this.conversionRateField.Name = "conversionRateField";
             this.conversionRateField.Size = new System.Drawing.Size(100, 26);
             this.conversionRateField.TabIndex = 15;
@@ -173,7 +177,7 @@ namespace UAH_CS490
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(727, 222);
+            this.label4.Location = new System.Drawing.Point(714, 222);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 20);
             this.label4.TabIndex = 16;
@@ -182,7 +186,7 @@ namespace UAH_CS490
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(837, 249);
+            this.label5.Location = new System.Drawing.Point(824, 249);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 20);
             this.label5.TabIndex = 17;
@@ -191,7 +195,7 @@ namespace UAH_CS490
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(731, 304);
+            this.label6.Location = new System.Drawing.Point(718, 304);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 20);
             this.label6.TabIndex = 18;
@@ -200,16 +204,17 @@ namespace UAH_CS490
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(731, 343);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(718, 343);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(127, 20);
+            this.label7.Size = new System.Drawing.Size(159, 25);
             this.label7.TabIndex = 19;
             this.label7.Text = "Current Process:";
             // 
             // currentProcLab
             // 
             this.currentProcLab.AutoSize = true;
-            this.currentProcLab.Location = new System.Drawing.Point(731, 376);
+            this.currentProcLab.Location = new System.Drawing.Point(718, 376);
             this.currentProcLab.Name = "currentProcLab";
             this.currentProcLab.Size = new System.Drawing.Size(31, 20);
             this.currentProcLab.TabIndex = 20;
@@ -218,26 +223,68 @@ namespace UAH_CS490
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(731, 412);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(718, 412);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(120, 20);
+            this.label9.Size = new System.Drawing.Size(152, 25);
             this.label9.TabIndex = 21;
             this.label9.Text = "Time remaining:";
             // 
             // timeLeftLab
             // 
             this.timeLeftLab.AutoSize = true;
-            this.timeLeftLab.Location = new System.Drawing.Point(735, 452);
+            this.timeLeftLab.Location = new System.Drawing.Point(722, 452);
             this.timeLeftLab.Name = "timeLeftLab";
             this.timeLeftLab.Size = new System.Drawing.Size(18, 20);
             this.timeLeftLab.TabIndex = 22;
             this.timeLeftLab.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(739, 609);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(144, 20);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Total Elapsed time:";
+            // 
+            // totalTimeLab
+            // 
+            this.totalTimeLab.AutoSize = true;
+            this.totalTimeLab.Location = new System.Drawing.Point(925, 608);
+            this.totalTimeLab.Name = "totalTimeLab";
+            this.totalTimeLab.Size = new System.Drawing.Size(18, 20);
+            this.totalTimeLab.TabIndex = 24;
+            this.totalTimeLab.Text = "0";
+            // 
+            // completedLab
+            // 
+            this.completedLab.AutoSize = true;
+            this.completedLab.Location = new System.Drawing.Point(82, 707);
+            this.completedLab.Name = "completedLab";
+            this.completedLab.Size = new System.Drawing.Size(168, 20);
+            this.completedLab.TabIndex = 25;
+            this.completedLab.Text = "Completed Processes:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(935, 181);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(180, 29);
+            this.label10.TabIndex = 26;
+            this.label10.Text = "Process Queue";
             // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 842);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.completedLab);
+            this.Controls.Add(this.totalTimeLab);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.timeLeftLab);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.currentProcLab);
@@ -286,6 +333,10 @@ namespace UAH_CS490
         private System.Windows.Forms.Label currentProcLab;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label timeLeftLab;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label totalTimeLab;
+        private System.Windows.Forms.Label completedLab;
+        private System.Windows.Forms.Label label10;
     }
 }
 
