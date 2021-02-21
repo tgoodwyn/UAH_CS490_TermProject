@@ -70,8 +70,6 @@ namespace UAH_CS490
 
         private void startSysBtn_Click(object sender, EventArgs e)
         {
-            string field = ProcessData.dataFromFile.Rows[0].Field<string>(0);
-            fileInfo.Text = field;
             CPU.start();
         }
 
@@ -98,6 +96,8 @@ namespace UAH_CS490
         {
             QueueBox.DataSource = dt;
         }
+
+
     }
 }
 

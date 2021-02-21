@@ -34,7 +34,6 @@ namespace UAH_CS490
             this.startSysBtn = new System.Windows.Forms.Button();
             this.stopSysBtn = new System.Windows.Forms.Button();
             this.FileBox = new System.Windows.Forms.DataGridView();
-            this.fileInfo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.currentPathLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,6 +42,11 @@ namespace UAH_CS490
             this.conversionRateField = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.currentProcLab = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.timeLeftLab = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FileBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QueueBox)).BeginInit();
             this.SuspendLayout();
@@ -104,15 +108,6 @@ namespace UAH_CS490
             this.FileBox.RowTemplate.Height = 28;
             this.FileBox.Size = new System.Drawing.Size(562, 320);
             this.FileBox.TabIndex = 8;
-            // 
-            // fileInfo
-            // 
-            this.fileInfo.AutoSize = true;
-            this.fileInfo.Location = new System.Drawing.Point(1009, 176);
-            this.fileInfo.Name = "fileInfo";
-            this.fileInfo.Size = new System.Drawing.Size(51, 20);
-            this.fileInfo.TabIndex = 9;
-            this.fileInfo.Text = "label1";
             // 
             // label1
             // 
@@ -193,11 +188,61 @@ namespace UAH_CS490
             this.label5.TabIndex = 17;
             this.label5.Text = "ms";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(731, 304);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(55, 20);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "CPU 1";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(731, 343);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(127, 20);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Current Process:";
+            // 
+            // currentProcLab
+            // 
+            this.currentProcLab.AutoSize = true;
+            this.currentProcLab.Location = new System.Drawing.Point(731, 376);
+            this.currentProcLab.Name = "currentProcLab";
+            this.currentProcLab.Size = new System.Drawing.Size(31, 20);
+            this.currentProcLab.TabIndex = 20;
+            this.currentProcLab.Text = "n/a";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(731, 412);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(120, 20);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "Time remaining:";
+            // 
+            // timeLeftLab
+            // 
+            this.timeLeftLab.AutoSize = true;
+            this.timeLeftLab.Location = new System.Drawing.Point(735, 452);
+            this.timeLeftLab.Name = "timeLeftLab";
+            this.timeLeftLab.Size = new System.Drawing.Size(18, 20);
+            this.timeLeftLab.TabIndex = 22;
+            this.timeLeftLab.Text = "0";
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 842);
+            this.Controls.Add(this.timeLeftLab);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.currentProcLab);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.conversionRateField);
@@ -206,7 +251,6 @@ namespace UAH_CS490
             this.Controls.Add(this.label2);
             this.Controls.Add(this.currentPathLabel);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.fileInfo);
             this.Controls.Add(this.FileBox);
             this.Controls.Add(this.stopSysBtn);
             this.Controls.Add(this.startSysBtn);
@@ -229,7 +273,6 @@ namespace UAH_CS490
         private System.Windows.Forms.Button startSysBtn;
         private System.Windows.Forms.Button stopSysBtn;
         private System.Windows.Forms.DataGridView FileBox;
-        private System.Windows.Forms.Label fileInfo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label currentPathLabel;
         private System.Windows.Forms.Label label2;
@@ -238,6 +281,11 @@ namespace UAH_CS490
         private System.Windows.Forms.TextBox conversionRateField;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label currentProcLab;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label timeLeftLab;
     }
 }
 
