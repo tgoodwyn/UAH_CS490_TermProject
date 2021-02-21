@@ -27,9 +27,6 @@ namespace UAH_CS490
                 await Task.Delay(clockUnit);
                 currentProccess.timeElapsed++;
 
-                
-
-
             }
             else if (currentProccess.timeElapsed == currentProccess.serviceTime)
             {

@@ -37,7 +37,7 @@ namespace UAH_CS490
                     dispatch();
                     noDispatch = false;
                     updateDT();
-                    await CPU.execute(currentProccess); // the cpu will tick the clock up
+                    await CPU.execute(currentProccess); 
                 }
                 else // otherwise, we'll go idle
                 {
@@ -46,7 +46,7 @@ namespace UAH_CS490
 
             } else // if a process is dispatched, then we will just return control to the CPU after checking for new arrivals
             {
-                    await CPU.execute(currentProccess); // the cpu will tick the clock up
+                    await CPU.execute(currentProccess); 
             }
 
             
