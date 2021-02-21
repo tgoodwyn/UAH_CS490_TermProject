@@ -9,7 +9,9 @@ namespace UAH_CS490
 
     class Process
     {
-        public int stopTime;
+        public int serviceTime;
         public int timeElapsed;
+        public string name;
+        public int priority;
     }
 }

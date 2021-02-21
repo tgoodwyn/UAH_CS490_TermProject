@@ -21,8 +21,6 @@ namespace UAH_CS490
         // variables
         public static string currentlySelectedFilePath; // this will hold the path to whatever data file the user selects
 
-        // data structures
-        List<ProcessFromFile> proccessesFromFile = new List<ProcessFromFile>(); // we will need a list for holding the process objects read in from the data file
 
 
         public GUI()
@@ -35,7 +33,7 @@ namespace UAH_CS490
         {
             currentPathLabel.Text = currentlySelectedFilePath;
             ProcessData.createDT(currentlySelectedFilePath);
-            QueueBox.DataSource = ProcessData.theData;
+            FileBox.DataSource = ProcessData.dataFromFile;
             CPU.clockUnit = int.Parse(conversionRateField.Text);
 
         }
@@ -43,8 +41,6 @@ namespace UAH_CS490
 
         private void fileSelectBtn_Click(object sender, EventArgs e)
         {
-            var fileContent = string.Empty;
-            var filePath = string.Empty;
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -56,11 +52,11 @@ namespace UAH_CS490
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    filePath = openFileDialog.FileName;
+                    string filePath = openFileDialog.FileName;
                     currentlySelectedFilePath = filePath;
                     currentPathLabel.Text = currentlySelectedFilePath;
                     ProcessData.createDT(currentlySelectedFilePath);
-                    QueueBox.DataSource = ProcessData.theData;
+                    FileBox.DataSource = ProcessData.dataFromFile;
                 }
             }
 
@@ -74,8 +70,9 @@ namespace UAH_CS490
 
         private void startSysBtn_Click(object sender, EventArgs e)
         {
-            string field = ProcessData.theData.Rows[0].Field<string>(0);
+            string field = ProcessData.dataFromFile.Rows[0].Field<string>(0);
             fileInfo.Text = field;
+            CPU.start();
         }
 
         private void stopSysBtn_Click(object sender, EventArgs e)
@@ -95,6 +92,11 @@ namespace UAH_CS490
                 CPU.clockUnit = int.Parse(conversionRateField.Text);
             }
 
+        }
+
+        public void setSourceForQueueDGV(DataTable dt)
+        {
+            QueueBox.DataSource = dt;
         }
     }
 }

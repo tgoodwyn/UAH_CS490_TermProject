@@ -33,18 +33,18 @@ namespace UAH_CS490
             this.fileSelectBtn = new System.Windows.Forms.Button();
             this.startSysBtn = new System.Windows.Forms.Button();
             this.stopSysBtn = new System.Windows.Forms.Button();
-            this.QueueBox = new System.Windows.Forms.DataGridView();
+            this.FileBox = new System.Windows.Forms.DataGridView();
             this.fileInfo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.currentPathLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.QueueBox = new System.Windows.Forms.DataGridView();
             this.conversionRateField = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.FileBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QueueBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // saveFileBtn
@@ -91,19 +91,19 @@ namespace UAH_CS490
             this.stopSysBtn.UseVisualStyleBackColor = true;
             this.stopSysBtn.Click += new System.EventHandler(this.stopSysBtn_Click);
             // 
-            // QueueBox
+            // FileBox
             // 
-            this.QueueBox.AllowUserToDeleteRows = false;
-            this.QueueBox.AllowUserToResizeColumns = false;
-            this.QueueBox.AllowUserToResizeRows = false;
-            this.QueueBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.QueueBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.QueueBox.Location = new System.Drawing.Point(35, 222);
-            this.QueueBox.Name = "QueueBox";
-            this.QueueBox.RowHeadersWidth = 62;
-            this.QueueBox.RowTemplate.Height = 28;
-            this.QueueBox.Size = new System.Drawing.Size(562, 320);
-            this.QueueBox.TabIndex = 8;
+            this.FileBox.AllowUserToDeleteRows = false;
+            this.FileBox.AllowUserToResizeColumns = false;
+            this.FileBox.AllowUserToResizeRows = false;
+            this.FileBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.FileBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.FileBox.Location = new System.Drawing.Point(35, 222);
+            this.FileBox.Name = "FileBox";
+            this.FileBox.RowHeadersWidth = 62;
+            this.FileBox.RowTemplate.Height = 28;
+            this.FileBox.Size = new System.Drawing.Size(562, 320);
+            this.FileBox.TabIndex = 8;
             // 
             // fileInfo
             // 
@@ -152,18 +152,18 @@ namespace UAH_CS490
             this.label3.TabIndex = 13;
             this.label3.Text = "Data from Selected File";
             // 
-            // dataGridView1
+            // QueueBox
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(895, 222);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(267, 320);
-            this.dataGridView1.TabIndex = 14;
+            this.QueueBox.AllowUserToAddRows = false;
+            this.QueueBox.AllowUserToDeleteRows = false;
+            this.QueueBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.QueueBox.Location = new System.Drawing.Point(895, 222);
+            this.QueueBox.Name = "QueueBox";
+            this.QueueBox.ReadOnly = true;
+            this.QueueBox.RowHeadersWidth = 62;
+            this.QueueBox.RowTemplate.Height = 28;
+            this.QueueBox.Size = new System.Drawing.Size(267, 320);
+            this.QueueBox.TabIndex = 14;
             // 
             // conversionRateField
             // 
@@ -200,13 +200,13 @@ namespace UAH_CS490
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.conversionRateField);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.QueueBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.currentPathLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.fileInfo);
-            this.Controls.Add(this.QueueBox);
+            this.Controls.Add(this.FileBox);
             this.Controls.Add(this.stopSysBtn);
             this.Controls.Add(this.startSysBtn);
             this.Controls.Add(this.fileSelectBtn);
@@ -215,8 +215,8 @@ namespace UAH_CS490
             this.Name = "GUI";
             this.Text = "Process Execution Sim";
             this.Load += new System.EventHandler(this.ThreadSwitcher_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.FileBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.QueueBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,13 +227,13 @@ namespace UAH_CS490
         private System.Windows.Forms.Button fileSelectBtn;
         private System.Windows.Forms.Button startSysBtn;
         private System.Windows.Forms.Button stopSysBtn;
-        private System.Windows.Forms.DataGridView QueueBox;
+        private System.Windows.Forms.DataGridView FileBox;
         private System.Windows.Forms.Label fileInfo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label currentPathLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView QueueBox;
         private System.Windows.Forms.TextBox conversionRateField;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;

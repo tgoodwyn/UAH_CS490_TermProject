@@ -11,12 +11,14 @@ namespace UAH_CS490
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        public static GUI GUI;
         [STAThread]
         static void Main()
         {
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-            System.Windows.Forms.Application.Run(new GUI());
+            GUI = new GUI();
+            System.Windows.Forms.Application.Run(GUI);
         }
     }
 }

@@ -10,21 +10,21 @@ namespace UAH_CS490
 {
     class ProcessData
     {
-        public static DataTable theData = new DataTable();
+        public static DataTable dataFromFile = new DataTable();
         public static void createDT(string filePath)
         {
-            theData = new DataTable();
+            dataFromFile = new DataTable();
 
-            theData.Columns.Add("Arrival time");
-            theData.Columns.Add("Name");
-            theData.Columns.Add("Service time");
-            theData.Columns.Add("Priority");
+            dataFromFile.Columns.Add("Arrival time");
+            dataFromFile.Columns.Add("Name");
+            dataFromFile.Columns.Add("Service time");
+            dataFromFile.Columns.Add("Priority");
 
             // Adding the rows
             File.ReadLines(filePath)
                 .Select(x => x.Split(','))
                 .ToList()
-                .ForEach(line => theData.Rows.Add(line));
+                .ForEach(line => dataFromFile.Rows.Add(line));
 
             
             return;
@@ -34,7 +34,7 @@ namespace UAH_CS490
         public static void exportDTableToCSV()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (DataRow row in theData.Rows)
+            foreach (DataRow row in dataFromFile.Rows)
             {
                 IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
                 sb.AppendLine(string.Join(",", fields));
