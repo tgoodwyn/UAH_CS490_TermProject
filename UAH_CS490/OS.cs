@@ -43,12 +43,12 @@ namespace UAH_CS490
         {
             foreach (DataRow row in ProcessData.dataFromFile.Rows)
             {
-                int arrivalTime = row.Field<int>(0);
+                int arrivalTime = int.Parse((string)row[0]);
                 if (arrivalTime == currentTime)
                 {
-                    string name = row.Field<string>(1);
-                    int serviceTime = row.Field<int>(2);
-                    int priority = row.Field<int>(3);
+                    string name = (string)row[1];
+                    int serviceTime = int.Parse((string)row[2]);
+                    int priority = int.Parse((string)row[3]);
 
                     processQueue.Enqueue(new Process
                     {

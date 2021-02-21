@@ -156,6 +156,7 @@ namespace UAH_CS490
             // 
             this.QueueBox.AllowUserToAddRows = false;
             this.QueueBox.AllowUserToDeleteRows = false;
+            this.QueueBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.QueueBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.QueueBox.Location = new System.Drawing.Point(895, 222);
             this.QueueBox.Name = "QueueBox";
