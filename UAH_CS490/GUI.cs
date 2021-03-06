@@ -32,6 +32,7 @@ namespace UAH_CS490
             formatResultsTable();
             formatWaitQueueTable();
             FileHandler.createDT(currentlySelectedFilePath);
+            FileBox.DataSource = FileHandler.dataFromFile;
 
 
             currentPathLabel.Text = currentlySelectedFilePath;
@@ -43,10 +44,20 @@ namespace UAH_CS490
         {
             resultsView.AutoGenerateColumns = false;
             resultsView.Columns.Clear();
-            resultsView.ColumnCount = 1;
-            resultsView.Columns[0].Name = "baby";
-            resultsView.Columns[0].DataPropertyName = "ArrivalTime";
-            resultsView.Columns[0].DefaultCellStyle.Format = "N2";
+            resultsView.ColumnCount = 6;
+            resultsView.Columns[0].Name = "Name";
+            resultsView.Columns[0].DataPropertyName = "Name";
+            resultsView.Columns[1].Name = "Arrival Time";
+            resultsView.Columns[1].DataPropertyName = "ArrivalTime";
+            resultsView.Columns[2].Name = "Service Time";
+            resultsView.Columns[2].DataPropertyName = "ServiceTime";
+            resultsView.Columns[3].Name = "Finish Time";
+            resultsView.Columns[3].DataPropertyName = "FinishTime";
+            resultsView.Columns[4].Name = "Turnaround Time";
+            resultsView.Columns[4].DataPropertyName = "TurnaroundTime";
+            resultsView.Columns[5].Name = "Normalized TAT";
+            resultsView.Columns[5].DataPropertyName = "NormalizedTAT";
+            resultsView.Columns[5].DefaultCellStyle.Format = "N2";
             resultsView.DataSource = os.FinishedProcs;
         }
 
@@ -124,14 +135,29 @@ namespace UAH_CS490
 
         // public functions, called from other classes
 
-        public void setProcessLabel(string procName)
+        public void setProcessLabels()
         {
-            currentProcLab.Text = procName;
-        }
+            if (os.CPU1.CurrentProcess !=null)
+            {
+            cpu1ProcNameLbl.Text = os.CPU1.CurrentProcess.Name;
+            cpu1ProcTimeLbl.Text = os.CPU1.CurrentProcess.TimeRemaining.ToString();
 
-        public void setTimeRemaining(int time)
-        {
-            timeLeftLab.Text = time.ToString();
+            } else
+            {
+                cpu1ProcNameLbl.Text = "idle";
+                cpu1ProcTimeLbl.Text = "n/a";
+            }
+            if (os.CPU2.CurrentProcess != null)
+            {
+                cpu2ProcNameLbl.Text = os.CPU2.CurrentProcess.Name;
+                cpu2ProcTimeLbl.Text = os.CPU2.CurrentProcess.TimeRemaining.ToString();
+
+            }
+            else
+            {
+                cpu2ProcNameLbl.Text = "idle";
+                cpu2ProcTimeLbl.Text = "n/a";
+            }
         }
         public void setQueueTable()
         {
@@ -142,6 +168,11 @@ namespace UAH_CS490
             totalTimeLab.Text = os.TotalElapsedTime.ToString();
         }
 
+        private void resetBtn_Click(object sender, EventArgs e)
+        {
+            loaded = false;
+            os.resetOS();
+        }
     }
 }
 

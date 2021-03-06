@@ -48,14 +48,15 @@ namespace UAH_CS490
         {
             Console.WriteLine("time " + os.TotalElapsedTime + ": " + name + " finishes " + currentProcess.Name);
             Process cp = currentProcess;
+            int adjustedFinish = os.TotalElapsedTime + 1;
             os.FinishedProcs.Add(new Process
             {
                 Name = cp.Name,
                 ServiceTime = cp.ServiceTime,
                 ArrivalTime = cp.ArrivalTime,
-                FinishTime = os.TotalElapsedTime + 1,
-                TurnaroundTime = os.TotalElapsedTime - cp.ArrivalTime,
-                NormalizedTAT = (os.TotalElapsedTime - cp.ArrivalTime) / cp.ServiceTime
+                FinishTime = adjustedFinish,
+                TurnaroundTime = adjustedFinish - cp.ArrivalTime,
+                NormalizedTAT = (float)(adjustedFinish - cp.ArrivalTime) / (float)cp.ServiceTime
             });
             currentProcess = null;
         }

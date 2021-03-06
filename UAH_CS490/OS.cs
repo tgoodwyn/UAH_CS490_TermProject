@@ -18,6 +18,9 @@ namespace UAH_CS490
         internal BindingList<Process> FinishedProcs { get => finishedProcs; set => finishedProcs = value; }
         internal List<Process> DisplayQueue { get => displayQueue; set => displayQueue = value; }
         public int TotalElapsedTime { get => totalElapsedTime; set => totalElapsedTime = value; }
+        internal CPU CPU1 { get => cpu1; set => cpu1 = value; }
+        internal CPU CPU2 { get => cpu2; set => cpu2 = value; }
+        internal List<CPU> Cores { get => cores; set => cores = value; }
 
         private GUI gui;
         private bool pause = false;
@@ -32,16 +35,10 @@ namespace UAH_CS490
         public OS(GUI gui)
         {
             this.gui = gui;
-            cpu1 = new CPU { OS = this, Name = "CPU 1" };
-            cpu2 = new CPU { OS = this, Name = "CPU 2" };
-            cores = new List<CPU> { cpu1, cpu2 };
-            unarrivedProcs = new List<Process> {
-                new Process { Name = "A", ArrivalTime = 0, ServiceTime = 3 },
-                new Process { Name = "B", ArrivalTime = 0, ServiceTime = 2 },
-                new Process { Name = "C", ArrivalTime = 9, ServiceTime = 3 },
-                new Process { Name = "D", ArrivalTime = 2, ServiceTime = 2 },
-            };
-            unarrivedProcs = finishedProcs.Where(x => x.ArrivalTime != null).ToList();
+            CPU1 = new CPU { OS = this, Name = "CPU 1" };
+            CPU2 = new CPU { OS = this, Name = "CPU 2" };
+            Cores = new List<CPU> { CPU1, CPU2 };
+            unarrivedProcs = new List<Process>();
         }
         public void startOS()
         {
@@ -58,7 +55,7 @@ namespace UAH_CS490
                 await checkSystemIdle();
                 if (!idle)
                 {
-                    foreach (CPU cpu in cores)
+                    foreach (CPU cpu in Cores)
                     {
                         if (cpu.CurrentProcess == null)
                         {
@@ -68,7 +65,7 @@ namespace UAH_CS490
                     }
                     TotalElapsedTime++;
                 }
-                gui.setTotalTimeLbl();
+                updateDisplay();
             }
         }
 
@@ -79,10 +76,19 @@ namespace UAH_CS490
             pause = true;
         }
 
+        public void resetOS()
+        {
+            pause = true;
+            unarrivedProcs.Clear();
+            FinishedProcs.Clear();
+            TotalElapsedTime = 0;
+            updateDisplay();
+        }
+
         public async Task checkSystemIdle()
         {
             // if the process queue is empty, and neither cpu is currently working on a process: the OS goes idle
-            if ((processQueue.Count == 0) && (cores.Where(c => c.CurrentProcess == null).Count() == cores.Count))
+            if ((processQueue.Count == 0) && (Cores.Where(c => c.CurrentProcess == null).Count() == Cores.Count))
             {
                 Console.WriteLine("time " + TotalElapsedTime + ": " + "system now idle");
                 await Task.Delay(clockUnit);
@@ -101,7 +107,8 @@ namespace UAH_CS490
             {
                 cpu.CurrentProcess = processQueue.Dequeue();
                 Console.WriteLine("time " + TotalElapsedTime + ": " + cpu.CurrentProcess.Name + " dispatched to " + cpu.Name);
-                updateQueDisplay();
+                updateDisplay();
+
 
             }
             else
@@ -121,13 +128,16 @@ namespace UAH_CS490
                 unarrivedProcs.Remove(p);
                 Console.WriteLine("time " + TotalElapsedTime + ": " + p.Name + " added to process queue");
             }
-            updateQueDisplay();
+            updateDisplay();
         }
 
-        private void updateQueDisplay()
+        private void updateDisplay()
         {
             displayQueue = processQueue.ToList();
             gui.setQueueTable();
+            gui.setProcessLabels();
+            gui.setTotalTimeLbl();
+
         }
 
         public void loadFileData()

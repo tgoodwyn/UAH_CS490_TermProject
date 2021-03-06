@@ -26,6 +26,5 @@ namespace UAH_CS490
         public float NormalizedTAT { get => normalizedTAT; set => normalizedTAT = value; }
         public int FinishTime { get => finishTime; set => finishTime = value; }
         public int Priority { get => priority; set => priority = value; }
-        public int timeElapsed { get; internal set; }
     }
 }

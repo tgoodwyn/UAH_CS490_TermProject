@@ -44,14 +44,23 @@ namespace UAH_CS490
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.currentProcLab = new System.Windows.Forms.Label();
+            this.cpu1ProcNameLbl = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.timeLeftLab = new System.Windows.Forms.Label();
+            this.cpu1ProcTimeLbl = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.totalTimeLab = new System.Windows.Forms.Label();
             this.completedLab = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.resultsView = new System.Windows.Forms.DataGridView();
+            this.cpu2ProcTimeLbl = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cpu2ProcNameLbl = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.resetBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.FileBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QueueBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.resultsView)).BeginInit();
@@ -59,21 +68,21 @@ namespace UAH_CS490
             // 
             // saveFileBtn
             // 
-            this.saveFileBtn.Location = new System.Drawing.Point(363, 487);
+            this.saveFileBtn.Location = new System.Drawing.Point(84, 427);
             this.saveFileBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.saveFileBtn.Name = "saveFileBtn";
-            this.saveFileBtn.Size = new System.Drawing.Size(234, 80);
+            this.saveFileBtn.Size = new System.Drawing.Size(161, 47);
             this.saveFileBtn.TabIndex = 3;
-            this.saveFileBtn.Text = "Save changes to current file";
+            this.saveFileBtn.Text = "Save changes";
             this.saveFileBtn.UseVisualStyleBackColor = true;
             this.saveFileBtn.Click += new System.EventHandler(this.saveFileBtn_Click);
             // 
             // fileSelectBtn
             // 
-            this.fileSelectBtn.Location = new System.Drawing.Point(62, 92);
+            this.fileSelectBtn.Location = new System.Drawing.Point(345, 424);
             this.fileSelectBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fileSelectBtn.Name = "fileSelectBtn";
-            this.fileSelectBtn.Size = new System.Drawing.Size(152, 36);
+            this.fileSelectBtn.Size = new System.Drawing.Size(152, 53);
             this.fileSelectBtn.TabIndex = 1;
             this.fileSelectBtn.Text = "Select new file";
             this.fileSelectBtn.UseVisualStyleBackColor = true;
@@ -81,7 +90,7 @@ namespace UAH_CS490
             // 
             // startSysBtn
             // 
-            this.startSysBtn.Location = new System.Drawing.Point(771, 23);
+            this.startSysBtn.Location = new System.Drawing.Point(704, 201);
             this.startSysBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.startSysBtn.Name = "startSysBtn";
             this.startSysBtn.Size = new System.Drawing.Size(152, 71);
@@ -92,7 +101,7 @@ namespace UAH_CS490
             // 
             // stopSysBtn
             // 
-            this.stopSysBtn.Location = new System.Drawing.Point(1052, 23);
+            this.stopSysBtn.Location = new System.Drawing.Point(704, 317);
             this.stopSysBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.stopSysBtn.Name = "stopSysBtn";
             this.stopSysBtn.Size = new System.Drawing.Size(152, 71);
@@ -108,7 +117,7 @@ namespace UAH_CS490
             this.FileBox.AllowUserToResizeRows = false;
             this.FileBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.FileBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.FileBox.Location = new System.Drawing.Point(35, 222);
+            this.FileBox.Location = new System.Drawing.Point(35, 107);
             this.FileBox.Name = "FileBox";
             this.FileBox.RowHeadersWidth = 62;
             this.FileBox.RowTemplate.Height = 28;
@@ -118,7 +127,7 @@ namespace UAH_CS490
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(58, 48);
+            this.label1.Location = new System.Drawing.Point(53, 813);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 20);
             this.label1.TabIndex = 10;
@@ -127,7 +136,7 @@ namespace UAH_CS490
             // currentPathLabel
             // 
             this.currentPathLabel.AutoSize = true;
-            this.currentPathLabel.Location = new System.Drawing.Point(163, 48);
+            this.currentPathLabel.Location = new System.Drawing.Point(158, 813);
             this.currentPathLabel.Name = "currentPathLabel";
             this.currentPathLabel.Size = new System.Drawing.Size(87, 20);
             this.currentPathLabel.TabIndex = 11;
@@ -136,10 +145,10 @@ namespace UAH_CS490
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(57, 517);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(172, 375);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(265, 25);
+            this.label2.Size = new System.Drawing.Size(244, 22);
             this.label2.TabIndex = 12;
             this.label2.Text = "Edit table to add/change data";
             // 
@@ -147,7 +156,7 @@ namespace UAH_CS490
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(162, 167);
+            this.label3.Location = new System.Drawing.Point(171, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(265, 29);
             this.label3.TabIndex = 13;
@@ -159,7 +168,7 @@ namespace UAH_CS490
             this.QueueBox.AllowUserToDeleteRows = false;
             this.QueueBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.QueueBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.QueueBox.Location = new System.Drawing.Point(895, 167);
+            this.QueueBox.Location = new System.Drawing.Point(895, 96);
             this.QueueBox.Name = "QueueBox";
             this.QueueBox.ReadOnly = true;
             this.QueueBox.RowHeadersWidth = 62;
@@ -169,7 +178,7 @@ namespace UAH_CS490
             // 
             // conversionRateField
             // 
-            this.conversionRateField.Location = new System.Drawing.Point(707, 189);
+            this.conversionRateField.Location = new System.Drawing.Point(704, 141);
             this.conversionRateField.Name = "conversionRateField";
             this.conversionRateField.Size = new System.Drawing.Size(100, 26);
             this.conversionRateField.TabIndex = 15;
@@ -179,7 +188,7 @@ namespace UAH_CS490
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(703, 155);
+            this.label4.Location = new System.Drawing.Point(700, 107);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 20);
             this.label4.TabIndex = 16;
@@ -188,7 +197,7 @@ namespace UAH_CS490
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(813, 189);
+            this.label5.Location = new System.Drawing.Point(810, 141);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 20);
             this.label5.TabIndex = 17;
@@ -197,7 +206,7 @@ namespace UAH_CS490
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(718, 243);
+            this.label6.Location = new System.Drawing.Point(981, 454);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 20);
             this.label6.TabIndex = 18;
@@ -206,45 +215,45 @@ namespace UAH_CS490
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(702, 282);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(981, 494);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(159, 25);
+            this.label7.Size = new System.Drawing.Size(127, 20);
             this.label7.TabIndex = 19;
             this.label7.Text = "Current Process:";
             // 
-            // currentProcLab
+            // cpu1ProcNameLbl
             // 
-            this.currentProcLab.AutoSize = true;
-            this.currentProcLab.Location = new System.Drawing.Point(722, 321);
-            this.currentProcLab.Name = "currentProcLab";
-            this.currentProcLab.Size = new System.Drawing.Size(31, 20);
-            this.currentProcLab.TabIndex = 20;
-            this.currentProcLab.Text = "n/a";
+            this.cpu1ProcNameLbl.AutoSize = true;
+            this.cpu1ProcNameLbl.Location = new System.Drawing.Point(1123, 494);
+            this.cpu1ProcNameLbl.Name = "cpu1ProcNameLbl";
+            this.cpu1ProcNameLbl.Size = new System.Drawing.Size(31, 20);
+            this.cpu1ProcNameLbl.TabIndex = 20;
+            this.cpu1ProcNameLbl.Text = "n/a";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(702, 350);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(981, 532);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(152, 25);
+            this.label9.Size = new System.Drawing.Size(120, 20);
             this.label9.TabIndex = 21;
             this.label9.Text = "Time remaining:";
             // 
-            // timeLeftLab
+            // cpu1ProcTimeLbl
             // 
-            this.timeLeftLab.AutoSize = true;
-            this.timeLeftLab.Location = new System.Drawing.Point(722, 393);
-            this.timeLeftLab.Name = "timeLeftLab";
-            this.timeLeftLab.Size = new System.Drawing.Size(18, 20);
-            this.timeLeftLab.TabIndex = 22;
-            this.timeLeftLab.Text = "0";
+            this.cpu1ProcTimeLbl.AutoSize = true;
+            this.cpu1ProcTimeLbl.Location = new System.Drawing.Point(1123, 532);
+            this.cpu1ProcTimeLbl.Name = "cpu1ProcTimeLbl";
+            this.cpu1ProcTimeLbl.Size = new System.Drawing.Size(18, 20);
+            this.cpu1ProcTimeLbl.TabIndex = 22;
+            this.cpu1ProcTimeLbl.Text = "0";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(737, 522);
+            this.label8.Location = new System.Drawing.Point(943, 744);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(144, 20);
             this.label8.TabIndex = 23;
@@ -253,7 +262,7 @@ namespace UAH_CS490
             // totalTimeLab
             // 
             this.totalTimeLab.AutoSize = true;
-            this.totalTimeLab.Location = new System.Drawing.Point(905, 521);
+            this.totalTimeLab.Location = new System.Drawing.Point(1111, 743);
             this.totalTimeLab.Name = "totalTimeLab";
             this.totalTimeLab.Size = new System.Drawing.Size(18, 20);
             this.totalTimeLab.TabIndex = 24;
@@ -262,7 +271,7 @@ namespace UAH_CS490
             // completedLab
             // 
             this.completedLab.AutoSize = true;
-            this.completedLab.Location = new System.Drawing.Point(1036, 608);
+            this.completedLab.Location = new System.Drawing.Point(1253, 132);
             this.completedLab.Name = "completedLab";
             this.completedLab.Size = new System.Drawing.Size(168, 20);
             this.completedLab.TabIndex = 25;
@@ -272,7 +281,7 @@ namespace UAH_CS490
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(924, 123);
+            this.label10.Location = new System.Drawing.Point(928, 41);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(180, 29);
             this.label10.TabIndex = 26;
@@ -280,27 +289,118 @@ namespace UAH_CS490
             // 
             // resultsView
             // 
+            this.resultsView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.resultsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.resultsView.Location = new System.Drawing.Point(62, 677);
+            this.resultsView.Location = new System.Drawing.Point(51, 608);
             this.resultsView.Name = "resultsView";
             this.resultsView.RowHeadersWidth = 62;
             this.resultsView.RowTemplate.Height = 28;
-            this.resultsView.Size = new System.Drawing.Size(948, 150);
+            this.resultsView.Size = new System.Drawing.Size(830, 174);
             this.resultsView.TabIndex = 27;
+            // 
+            // cpu2ProcTimeLbl
+            // 
+            this.cpu2ProcTimeLbl.AutoSize = true;
+            this.cpu2ProcTimeLbl.Location = new System.Drawing.Point(1123, 683);
+            this.cpu2ProcTimeLbl.Name = "cpu2ProcTimeLbl";
+            this.cpu2ProcTimeLbl.Size = new System.Drawing.Size(18, 20);
+            this.cpu2ProcTimeLbl.TabIndex = 32;
+            this.cpu2ProcTimeLbl.Text = "0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(981, 683);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(120, 20);
+            this.label12.TabIndex = 31;
+            this.label12.Text = "Time remaining:";
+            // 
+            // cpu2ProcNameLbl
+            // 
+            this.cpu2ProcNameLbl.AutoSize = true;
+            this.cpu2ProcNameLbl.Location = new System.Drawing.Point(1123, 645);
+            this.cpu2ProcNameLbl.Name = "cpu2ProcNameLbl";
+            this.cpu2ProcNameLbl.Size = new System.Drawing.Size(31, 20);
+            this.cpu2ProcNameLbl.TabIndex = 30;
+            this.cpu2ProcNameLbl.Text = "n/a";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(981, 645);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(127, 20);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "Current Process:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(981, 605);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(55, 20);
+            this.label15.TabIndex = 28;
+            this.label15.Text = "CPU 2";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(332, 556);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(252, 29);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "Completed Processes";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Location = new System.Drawing.Point(947, 444);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(275, 121);
+            this.panel1.TabIndex = 34;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.Location = new System.Drawing.Point(947, 594);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(275, 121);
+            this.panel2.TabIndex = 35;
+            // 
+            // resetBtn
+            // 
+            this.resetBtn.Location = new System.Drawing.Point(704, 434);
+            this.resetBtn.Name = "resetBtn";
+            this.resetBtn.Size = new System.Drawing.Size(145, 60);
+            this.resetBtn.TabIndex = 36;
+            this.resetBtn.Text = "Reset System";
+            this.resetBtn.UseVisualStyleBackColor = true;
+            this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
             // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 842);
+            this.ClientSize = new System.Drawing.Size(1578, 842);
+            this.Controls.Add(this.resetBtn);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.cpu2ProcTimeLbl);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.cpu2ProcNameLbl);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.resultsView);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.completedLab);
             this.Controls.Add(this.totalTimeLab);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.timeLeftLab);
+            this.Controls.Add(this.cpu1ProcTimeLbl);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.currentProcLab);
+            this.Controls.Add(this.cpu1ProcNameLbl);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -316,6 +416,8 @@ namespace UAH_CS490
             this.Controls.Add(this.startSysBtn);
             this.Controls.Add(this.fileSelectBtn);
             this.Controls.Add(this.saveFileBtn);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "GUI";
             this.Text = "Process Execution Sim";
@@ -344,14 +446,23 @@ namespace UAH_CS490
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label currentProcLab;
+        private System.Windows.Forms.Label cpu1ProcNameLbl;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label timeLeftLab;
+        private System.Windows.Forms.Label cpu1ProcTimeLbl;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label totalTimeLab;
         private System.Windows.Forms.Label completedLab;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView resultsView;
+        private System.Windows.Forms.Label cpu2ProcTimeLbl;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label cpu2ProcNameLbl;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button resetBtn;
     }
 }
 
