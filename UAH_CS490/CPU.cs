@@ -8,38 +8,56 @@ namespace UAH_CS490
 {
     class CPU
     {
+        private OS os;
+        private string name;
+        private Process currentProcess;
+        internal Process CurrentProcess { get => currentProcess; set => currentProcess = value; }
+        public string Name { get => name; set => name = value; }
+        internal OS OS { get => os; set => os = value; }
 
-        public static int clockUnit = 0; // set by the GUI
 
-
-        public static void start()
+        public async Task run()
         {
-            OS.idle = false;
-            returnControlToOS();
-        }
-        public async static Task execute(Process currentProccess)
-        {
-            if (currentProccess.timeElapsed < currentProccess.serviceTime)
+            if (currentProcess != null)
             {
-                
-                int timeLeft = currentProccess.serviceTime - currentProccess.timeElapsed;
-                Program.GUI.setTimeRemaining(timeLeft);
-                await Task.Delay(clockUnit);
-                currentProccess.timeElapsed++;
-
+                await executePs();
             }
-            else if (currentProccess.timeElapsed == currentProccess.serviceTime)
+            else
             {
-                OS.noDispatch = true;
-                Program.GUI.setCompleted(currentProccess.name);
+                await idle();
             }
-            returnControlToOS();
-
+        }
+        public async Task executePs()
+        {
+            Console.WriteLine("time " + os.TotalElapsedTime + ": " + name + " executes " + currentProcess.Name);
+            await Task.Delay(OS.clockUnit);
+            currentProcess.TimeRemaining--;
+            if (currentProcess.TimeRemaining == 0)
+            {
+                completePs();
+            }
         }
 
-        public static void returnControlToOS()
+        private async Task idle()
         {
-            OS.regainControl();
+            Console.WriteLine("time " + os.TotalElapsedTime + ": " + name + " idles for 1 cycle");
+            await Task.Delay(OS.clockUnit);
+
+        }
+        private void completePs()
+        {
+            Console.WriteLine("time " + os.TotalElapsedTime + ": " + name + " finishes " + currentProcess.Name);
+            Process cp = currentProcess;
+            os.FinishedProcs.Add(new Process
+            {
+                Name = cp.Name,
+                ServiceTime = cp.ServiceTime,
+                ArrivalTime = cp.ArrivalTime,
+                FinishTime = os.TotalElapsedTime + 1,
+                TurnaroundTime = os.TotalElapsedTime - cp.ArrivalTime,
+                NormalizedTAT = (os.TotalElapsedTime - cp.ArrivalTime) / cp.ServiceTime
+            });
+            currentProcess = null;
         }
 
     }

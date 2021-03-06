@@ -51,13 +51,15 @@ namespace UAH_CS490
             this.totalTimeLab = new System.Windows.Forms.Label();
             this.completedLab = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.resultsView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.FileBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QueueBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resultsView)).BeginInit();
             this.SuspendLayout();
             // 
             // saveFileBtn
             // 
-            this.saveFileBtn.Location = new System.Drawing.Point(363, 550);
+            this.saveFileBtn.Location = new System.Drawing.Point(363, 487);
             this.saveFileBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.saveFileBtn.Name = "saveFileBtn";
             this.saveFileBtn.Size = new System.Drawing.Size(234, 80);
@@ -79,7 +81,7 @@ namespace UAH_CS490
             // 
             // startSysBtn
             // 
-            this.startSysBtn.Location = new System.Drawing.Point(838, 92);
+            this.startSysBtn.Location = new System.Drawing.Point(771, 23);
             this.startSysBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.startSysBtn.Name = "startSysBtn";
             this.startSysBtn.Size = new System.Drawing.Size(152, 71);
@@ -90,7 +92,7 @@ namespace UAH_CS490
             // 
             // stopSysBtn
             // 
-            this.stopSysBtn.Location = new System.Drawing.Point(1084, 92);
+            this.stopSysBtn.Location = new System.Drawing.Point(1052, 23);
             this.stopSysBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.stopSysBtn.Name = "stopSysBtn";
             this.stopSysBtn.Size = new System.Drawing.Size(152, 71);
@@ -110,7 +112,7 @@ namespace UAH_CS490
             this.FileBox.Name = "FileBox";
             this.FileBox.RowHeadersWidth = 62;
             this.FileBox.RowTemplate.Height = 28;
-            this.FileBox.Size = new System.Drawing.Size(562, 320);
+            this.FileBox.Size = new System.Drawing.Size(562, 234);
             this.FileBox.TabIndex = 8;
             // 
             // label1
@@ -135,7 +137,7 @@ namespace UAH_CS490
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(58, 567);
+            this.label2.Location = new System.Drawing.Point(57, 517);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(265, 25);
             this.label2.TabIndex = 12;
@@ -157,7 +159,7 @@ namespace UAH_CS490
             this.QueueBox.AllowUserToDeleteRows = false;
             this.QueueBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.QueueBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.QueueBox.Location = new System.Drawing.Point(895, 222);
+            this.QueueBox.Location = new System.Drawing.Point(895, 167);
             this.QueueBox.Name = "QueueBox";
             this.QueueBox.ReadOnly = true;
             this.QueueBox.RowHeadersWidth = 62;
@@ -167,7 +169,7 @@ namespace UAH_CS490
             // 
             // conversionRateField
             // 
-            this.conversionRateField.Location = new System.Drawing.Point(718, 249);
+            this.conversionRateField.Location = new System.Drawing.Point(707, 189);
             this.conversionRateField.Name = "conversionRateField";
             this.conversionRateField.Size = new System.Drawing.Size(100, 26);
             this.conversionRateField.TabIndex = 15;
@@ -177,7 +179,7 @@ namespace UAH_CS490
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(714, 222);
+            this.label4.Location = new System.Drawing.Point(703, 155);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 20);
             this.label4.TabIndex = 16;
@@ -186,7 +188,7 @@ namespace UAH_CS490
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(824, 249);
+            this.label5.Location = new System.Drawing.Point(813, 189);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 20);
             this.label5.TabIndex = 17;
@@ -195,7 +197,7 @@ namespace UAH_CS490
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(718, 304);
+            this.label6.Location = new System.Drawing.Point(718, 243);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 20);
             this.label6.TabIndex = 18;
@@ -205,7 +207,7 @@ namespace UAH_CS490
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(718, 343);
+            this.label7.Location = new System.Drawing.Point(702, 282);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(159, 25);
             this.label7.TabIndex = 19;
@@ -214,7 +216,7 @@ namespace UAH_CS490
             // currentProcLab
             // 
             this.currentProcLab.AutoSize = true;
-            this.currentProcLab.Location = new System.Drawing.Point(718, 376);
+            this.currentProcLab.Location = new System.Drawing.Point(722, 321);
             this.currentProcLab.Name = "currentProcLab";
             this.currentProcLab.Size = new System.Drawing.Size(31, 20);
             this.currentProcLab.TabIndex = 20;
@@ -224,7 +226,7 @@ namespace UAH_CS490
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(718, 412);
+            this.label9.Location = new System.Drawing.Point(702, 350);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(152, 25);
             this.label9.TabIndex = 21;
@@ -233,7 +235,7 @@ namespace UAH_CS490
             // timeLeftLab
             // 
             this.timeLeftLab.AutoSize = true;
-            this.timeLeftLab.Location = new System.Drawing.Point(722, 452);
+            this.timeLeftLab.Location = new System.Drawing.Point(722, 393);
             this.timeLeftLab.Name = "timeLeftLab";
             this.timeLeftLab.Size = new System.Drawing.Size(18, 20);
             this.timeLeftLab.TabIndex = 22;
@@ -242,7 +244,7 @@ namespace UAH_CS490
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(739, 609);
+            this.label8.Location = new System.Drawing.Point(737, 522);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(144, 20);
             this.label8.TabIndex = 23;
@@ -251,7 +253,7 @@ namespace UAH_CS490
             // totalTimeLab
             // 
             this.totalTimeLab.AutoSize = true;
-            this.totalTimeLab.Location = new System.Drawing.Point(925, 608);
+            this.totalTimeLab.Location = new System.Drawing.Point(905, 521);
             this.totalTimeLab.Name = "totalTimeLab";
             this.totalTimeLab.Size = new System.Drawing.Size(18, 20);
             this.totalTimeLab.TabIndex = 24;
@@ -260,7 +262,7 @@ namespace UAH_CS490
             // completedLab
             // 
             this.completedLab.AutoSize = true;
-            this.completedLab.Location = new System.Drawing.Point(82, 707);
+            this.completedLab.Location = new System.Drawing.Point(1036, 608);
             this.completedLab.Name = "completedLab";
             this.completedLab.Size = new System.Drawing.Size(168, 20);
             this.completedLab.TabIndex = 25;
@@ -270,17 +272,28 @@ namespace UAH_CS490
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(935, 181);
+            this.label10.Location = new System.Drawing.Point(924, 123);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(180, 29);
             this.label10.TabIndex = 26;
             this.label10.Text = "Process Queue";
+            // 
+            // resultsView
+            // 
+            this.resultsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.resultsView.Location = new System.Drawing.Point(62, 677);
+            this.resultsView.Name = "resultsView";
+            this.resultsView.RowHeadersWidth = 62;
+            this.resultsView.RowTemplate.Height = 28;
+            this.resultsView.Size = new System.Drawing.Size(948, 150);
+            this.resultsView.TabIndex = 27;
             // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 842);
+            this.Controls.Add(this.resultsView);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.completedLab);
             this.Controls.Add(this.totalTimeLab);
@@ -306,9 +319,10 @@ namespace UAH_CS490
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "GUI";
             this.Text = "Process Execution Sim";
-            this.Load += new System.EventHandler(this.ThreadSwitcher_Load);
+            this.Load += new System.EventHandler(this.GUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.FileBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.QueueBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resultsView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,6 +351,7 @@ namespace UAH_CS490
         private System.Windows.Forms.Label totalTimeLab;
         private System.Windows.Forms.Label completedLab;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridView resultsView;
     }
 }
 

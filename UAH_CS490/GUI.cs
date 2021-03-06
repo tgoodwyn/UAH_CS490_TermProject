@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using UAH_CS490.Utils;
 
 namespace UAH_CS490
 {
@@ -21,7 +16,8 @@ namespace UAH_CS490
         // variables
         public static string currentlySelectedFilePath; // this will hold the path to whatever data file the user selects
 
-
+        private OS os;
+        private bool loaded = false;
 
         public GUI()
         {
@@ -29,15 +25,42 @@ namespace UAH_CS490
             InitializeComponent();
         }
 
-        private void ThreadSwitcher_Load(object sender, EventArgs e)
+        private void GUI_Load(object sender, EventArgs e)
         {
+            os = new OS(this);
+            totalTimeLab.Text = os.TotalElapsedTime.ToString();
+            formatResultsTable();
+            formatWaitQueueTable();
+            FileHandler.createDT(currentlySelectedFilePath);
+
+
             currentPathLabel.Text = currentlySelectedFilePath;
-            ProcessData.createDT(currentlySelectedFilePath);
-            FileBox.DataSource = ProcessData.dataFromFile;
-            CPU.clockUnit = int.Parse(conversionRateField.Text);
+            OS.clockUnit = int.Parse(conversionRateField.Text);
 
         }
 
+        private void formatResultsTable()
+        {
+            resultsView.AutoGenerateColumns = false;
+            resultsView.Columns.Clear();
+            resultsView.ColumnCount = 1;
+            resultsView.Columns[0].Name = "baby";
+            resultsView.Columns[0].DataPropertyName = "ArrivalTime";
+            resultsView.Columns[0].DefaultCellStyle.Format = "N2";
+            resultsView.DataSource = os.FinishedProcs;
+        }
+
+        private void formatWaitQueueTable()
+        {
+            QueueBox.AutoGenerateColumns = false;
+            QueueBox.Columns.Clear();
+            QueueBox.ColumnCount = 2;
+            QueueBox.Columns[0].Name = "Process Name";
+            QueueBox.Columns[0].DataPropertyName = "Name";
+            QueueBox.Columns[1].Name = "Service Time";
+            QueueBox.Columns[1].DataPropertyName = "ServiceTime";
+            QueueBox.DataSource = os.DisplayQueue;
+        }
 
         private void fileSelectBtn_Click(object sender, EventArgs e)
         {
@@ -55,8 +78,8 @@ namespace UAH_CS490
                     string filePath = openFileDialog.FileName;
                     currentlySelectedFilePath = filePath;
                     currentPathLabel.Text = currentlySelectedFilePath;
-                    ProcessData.createDT(currentlySelectedFilePath);
-                    FileBox.DataSource = ProcessData.dataFromFile;
+                    FileHandler.createDT(currentlySelectedFilePath);
+                    FileBox.DataSource = FileHandler.dataFromFile;
                 }
             }
 
@@ -65,37 +88,41 @@ namespace UAH_CS490
 
         private void saveFileBtn_Click(object sender, EventArgs e)
         {
-            ProcessData.exportDTableToCSV();
+            FileHandler.exportDTableToCSV();
         }
 
         private void startSysBtn_Click(object sender, EventArgs e)
         {
-            CPU.start();
+            if (!loaded)
+            {
+                os.loadFileData();
+                loaded = true;
+            }
+            os.startOS();
         }
 
         private void stopSysBtn_Click(object sender, EventArgs e)
         {
-
+            os.stopOS();
         }
 
         private void conversionRateField_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                CPU.clockUnit = int.Parse(conversionRateField.Text);
+                OS.clockUnit = int.Parse(conversionRateField.Text);
             }
             catch
             {
                 conversionRateField.Text = 1000.ToString();
-                CPU.clockUnit = int.Parse(conversionRateField.Text);
+                OS.clockUnit = int.Parse(conversionRateField.Text);
             }
 
         }
 
-        public void setSourceForQueueDGV(DataTable dt)
-        {
-            QueueBox.DataSource = dt;
-        }
+
+
+        // public functions, called from other classes
 
         public void setProcessLabel(string procName)
         {
@@ -106,17 +133,14 @@ namespace UAH_CS490
         {
             timeLeftLab.Text = time.ToString();
         }
-
-        public void setTotalTime(int time)
+        public void setQueueTable()
         {
-            totalTimeLab.Text = time.ToString();
+            QueueBox.DataSource = os.DisplayQueue;
         }
-
-        public void setCompleted(string procName)
+        public void setTotalTimeLbl()
         {
-            completedLab.Text += "\n" + procName;
+            totalTimeLab.Text = os.TotalElapsedTime.ToString();
         }
-
 
     }
 }

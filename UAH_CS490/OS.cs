@@ -1,105 +1,156 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UAH_CS490.Utils;
 
 namespace UAH_CS490
 {
     class OS
     {
-        static Process currentProccess;
-        static Queue<Process> processQueue = new Queue<Process>();
-        public static DataTable dataFromQueue = new DataTable();
+        public static int clockUnit = 3000;
+        private int totalElapsedTime = 0;
+        
 
-        public static bool noDispatch = true;
-        public static bool idle = true;
-        public static int currentTime = 0;
+        internal BindingList<Process> FinishedProcs { get => finishedProcs; set => finishedProcs = value; }
+        internal List<Process> DisplayQueue { get => displayQueue; set => displayQueue = value; }
+        public int TotalElapsedTime { get => totalElapsedTime; set => totalElapsedTime = value; }
 
-        public static async void regainControl()
+        private GUI gui;
+        private bool pause = false;
+        private CPU cpu1;
+        private CPU cpu2;
+        private List<Process> unarrivedProcs;
+        private Queue<Process> processQueue = new Queue<Process>();
+        private List<CPU> cores;
+        private BindingList<Process> finishedProcs = new BindingList<Process>();
+        private List<Process> displayQueue;
+        private bool idle = false;
+        public OS(GUI gui)
         {
-            await kernelExecute();
+            this.gui = gui;
+            cpu1 = new CPU { OS = this, Name = "CPU 1" };
+            cpu2 = new CPU { OS = this, Name = "CPU 2" };
+            cores = new List<CPU> { cpu1, cpu2 };
+            unarrivedProcs = new List<Process> {
+                new Process { Name = "A", ArrivalTime = 0, ServiceTime = 3 },
+                new Process { Name = "B", ArrivalTime = 0, ServiceTime = 2 },
+                new Process { Name = "C", ArrivalTime = 9, ServiceTime = 3 },
+                new Process { Name = "D", ArrivalTime = 2, ServiceTime = 2 },
+            };
+            unarrivedProcs = finishedProcs.Where(x => x.ArrivalTime != null).ToList();
+        }
+        public void startOS()
+        {
+            pause = false;
+            kernelLoop();
 
         }
 
-        private static async Task kernelExecute()
+        public async void kernelLoop()
         {
-            checkForNewArrivals(); // always check for new arrivals to add to the queue
-            OS.currentTime++; // then uptick the clock
-            Program.GUI.setTotalTime(OS.currentTime); // and set its label
-
-            // check if a process has been dispatched
-            if (noDispatch) // if none are currently dispatched, then we'll check to see if any are in the queue
+            while (!pause)
             {
-                if (processQueue.Count > 0) // if queue is not empty, then we'll dispatch
+                checkArrivals();
+                await checkSystemIdle();
+                if (!idle)
                 {
-                    dispatch();
-                    noDispatch = false;
-                    updateDT();
-                    await CPU.execute(currentProccess); 
+                    foreach (CPU cpu in cores)
+                    {
+                        if (cpu.CurrentProcess == null)
+                        {
+                            dispatch(cpu);
+                        }
+                        await cpu.run();
+                    }
+                    TotalElapsedTime++;
                 }
-                else // otherwise, we'll go idle
-                {
-                    idle = true;
-                }
-
-            } else // if a process is dispatched, then we will just return control to the CPU after checking for new arrivals
-            {
-                    await CPU.execute(currentProccess); 
+                gui.setTotalTimeLbl();
             }
-
-            
         }
 
-        public static void checkForNewArrivals()
+
+        // pauses the whole system, not individual CPU's
+        public void stopOS()
         {
-            foreach (DataRow row in ProcessData.dataFromFile.Rows)
+            pause = true;
+        }
+
+        public async Task checkSystemIdle()
+        {
+            // if the process queue is empty, and neither cpu is currently working on a process: the OS goes idle
+            if ((processQueue.Count == 0) && (cores.Where(c => c.CurrentProcess == null).Count() == cores.Count))
+            {
+                Console.WriteLine("time " + TotalElapsedTime + ": " + "system now idle");
+                await Task.Delay(clockUnit);
+                this.TotalElapsedTime++;
+                idle = true;
+            }
+            // otherwise, it returns control to the cpu's
+            else
+            {
+                idle = false;
+            }
+        }
+        private void dispatch(CPU cpu)
+        {
+            if (processQueue.Count > 0)
+            {
+                cpu.CurrentProcess = processQueue.Dequeue();
+                Console.WriteLine("time " + TotalElapsedTime + ": " + cpu.CurrentProcess.Name + " dispatched to " + cpu.Name);
+                updateQueDisplay();
+
+            }
+            else
+            {
+                Console.WriteLine("time " + TotalElapsedTime + ": " + "no processes in queue for " + cpu.Name);
+            }
+        }
+
+        private void checkArrivals()
+        {
+
+            List<Process> arrived = unarrivedProcs.Where(p => TotalElapsedTime >= p.ArrivalTime).ToList();
+            foreach (Process p in arrived)
+            {
+                p.ArrivalTime = TotalElapsedTime;
+                processQueue.Enqueue(p);
+                unarrivedProcs.Remove(p);
+                Console.WriteLine("time " + TotalElapsedTime + ": " + p.Name + " added to process queue");
+            }
+            updateQueDisplay();
+        }
+
+        private void updateQueDisplay()
+        {
+            displayQueue = processQueue.ToList();
+            gui.setQueueTable();
+        }
+
+        public void loadFileData()
+        {
+            foreach (DataRow row in FileHandler.dataFromFile.Rows)
             {
                 int arrivalTime = int.Parse((string)row[0]);
-                if (arrivalTime == currentTime)
-                {
-                    string name = (string)row[1];
-                    int serviceTime = int.Parse((string)row[2]);
-                    int priority = int.Parse((string)row[3]);
 
-                    processQueue.Enqueue(new Process
+                string name = (string)row[1];
+                int serviceTime = int.Parse((string)row[2]);
+                int priority = int.Parse((string)row[3]);
+
+                unarrivedProcs.
+                    Add(new Process
                     {
-                        name = name,
-                        serviceTime = serviceTime,
-                        priority = priority,
-                        timeElapsed = 0
+                        ArrivalTime = arrivalTime,
+                        Name = name,
+                        ServiceTime = serviceTime,
+                        TimeRemaining = serviceTime,
+                        Priority = priority
                     });
 
-                    updateDT();
-                }
             }
-
-
-
-        }
-
-
-        public static void dispatch()
-        {
-            currentProccess = processQueue.Dequeue();
-            Program.GUI.setProcessLabel(currentProccess.name);
-
-        }
-        public static void updateDT()
-        {
-            dataFromQueue = new DataTable();
-            dataFromQueue.Columns.Add("Name");
-            dataFromQueue.Columns.Add("Service Time");
-            foreach (var process in processQueue)
-            {
-                DataRow dr = dataFromQueue.NewRow();
-                dr["Name"] = process.name;
-                dr["Service Time"] = process.serviceTime;
-                dataFromQueue.Rows.Add(dr);
-            }
-
-            Program.GUI.setSourceForQueueDGV(dataFromQueue);
         }
     }
 }

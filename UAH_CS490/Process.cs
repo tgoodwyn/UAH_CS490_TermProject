@@ -9,9 +9,23 @@ namespace UAH_CS490
 
     class Process
     {
-        public int serviceTime;
-        public int timeElapsed;
-        public string name;
-        public int priority;
+        private string name;
+        private int arrivalTime;
+        private int serviceTime;
+        private int timeRemaining;
+        private int finishTime;
+        private int turnaroundTime;
+        private float normalizedTAT;
+        private int priority;
+
+        public int ArrivalTime { get => arrivalTime; set => arrivalTime = value; }
+        public int ServiceTime { get => serviceTime; set => serviceTime = value; }
+        public int TimeRemaining { get => timeRemaining; set => timeRemaining = value; }
+        public string Name { get => name; set => name = value; }
+        public int TurnaroundTime { get => turnaroundTime; set => turnaroundTime = value; }
+        public float NormalizedTAT { get => normalizedTAT; set => normalizedTAT = value; }
+        public int FinishTime { get => finishTime; set => finishTime = value; }
+        public int Priority { get => priority; set => priority = value; }
+        public int timeElapsed { get; internal set; }
     }
 }
