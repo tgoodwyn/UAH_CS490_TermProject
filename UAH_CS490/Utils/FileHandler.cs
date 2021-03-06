@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UAH_CS490
+namespace UAH_CS490.Utils
 {
-    class ProcessData
+    class FileHandler
     {
         public static DataTable dataFromFile = new DataTable();
         public static void createDT(string filePath)
@@ -25,10 +25,6 @@ namespace UAH_CS490
                 .Select(x => x.Split(','))
                 .ToList()
                 .ForEach(line => dataFromFile.Rows.Add(line));
-
-            
-            return;
-
         }
 
         public static void exportDTableToCSV()
@@ -44,8 +40,5 @@ namespace UAH_CS490
 
             File.WriteAllText(exportFP, sb.ToString());
         }
-
-
-
     }
 }
