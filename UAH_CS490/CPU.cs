@@ -21,7 +21,7 @@ namespace UAH_CS490
         {
             if (currentProccess.timeElapsed < currentProccess.serviceTime)
             {
-                // this is good
+                
                 int timeLeft = currentProccess.serviceTime - currentProccess.timeElapsed;
                 Program.GUI.setTimeRemaining(timeLeft);
                 await Task.Delay(clockUnit);
