@@ -9,6 +9,9 @@ namespace UAH_CS490
 
     class Process
     {
+        //Initialize Variables
+        //These are the variables used by the actual functions in the simulation
+        //there is one for each of the columns in the data file and in the results table
         private string name;
         private int arrivalTime;
         private int serviceTime;
@@ -18,6 +21,7 @@ namespace UAH_CS490
         private float normalizedTAT;
         private int priority;
 
+        //These are the properties for each of those variables so that they can be accessed outside of this class
         public int ArrivalTime { get => arrivalTime; set => arrivalTime = value; }
         public int ServiceTime { get => serviceTime; set => serviceTime = value; }
         public int TimeRemaining { get => timeRemaining; set => timeRemaining = value; }

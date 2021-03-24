@@ -8,6 +8,8 @@ namespace UAH_CS490
 {
     class CPU
     {
+        //this class has 3 member variables and they are all private
+        //however they all have properties, which have getter and setter methods that allow the variables to be changed and referenced outside the class
         private OS os;
         private string name;
         private Process currentProcess;
@@ -15,7 +17,9 @@ namespace UAH_CS490
         public string Name { get => name; set => name = value; }
         internal OS OS { get => os; set => os = value; }
 
-
+        //checks to see if it has a current process to execute
+        //if yes then execute the process, calling executePs()
+        //if no then call idle()
         public async Task run()
         {
             if (currentProcess != null)
@@ -27,6 +31,10 @@ namespace UAH_CS490
                 await idle();
             }
         }
+
+        //executes the current process as well as printing the total time, CPU name, and process name
+        //decrements time remaining on current process coninually until it reaches zero
+        //once zero is reached it calls completePs() to complete the process
         public async Task executePs()
         {
             Console.WriteLine("time " + os.TotalElapsedTime + ": " + name + " executes " + currentProcess.Name);
@@ -37,13 +45,20 @@ namespace UAH_CS490
                 completePs();
             }
         }
-
+        //Idle Fuction.
+        //When Called: Print the OS Total Elapsed Time along with the name
+        //And then wait 3000ms, before being able to be called again
+        //Clock Unit is set to 3000 ms
         private async Task idle()
         {
             Console.WriteLine("time " + os.TotalElapsedTime + ": " + name + " idles for 1 cycle");
             await Task.Delay(OS.clockUnit);
 
         }
+        //Complete Process Function
+        //Prints the Total Elapsed Time for the current process when called
+        //Add current process information to Finished Processes(Name, Service Time, Arrival Time, Finish Time, Turn Around Time)
+        //Set Current Process to null to reset for next call1
         private void completePs()
         {
             Console.WriteLine("time " + os.TotalElapsedTime + ": " + name + " finishes " + currentProcess.Name);

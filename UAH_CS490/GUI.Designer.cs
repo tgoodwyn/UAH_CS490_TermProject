@@ -49,7 +49,6 @@ namespace UAH_CS490
             this.cpu1ProcTimeLbl = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.totalTimeLab = new System.Windows.Forms.Label();
-            this.completedLab = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.resultsView = new System.Windows.Forms.DataGridView();
             this.cpu2ProcTimeLbl = new System.Windows.Forms.Label();
@@ -268,15 +267,6 @@ namespace UAH_CS490
             this.totalTimeLab.TabIndex = 24;
             this.totalTimeLab.Text = "0";
             // 
-            // completedLab
-            // 
-            this.completedLab.AutoSize = true;
-            this.completedLab.Location = new System.Drawing.Point(1253, 132);
-            this.completedLab.Name = "completedLab";
-            this.completedLab.Size = new System.Drawing.Size(168, 20);
-            this.completedLab.TabIndex = 25;
-            this.completedLab.Text = "Completed Processes:";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -395,7 +385,6 @@ namespace UAH_CS490
             this.Controls.Add(this.label15);
             this.Controls.Add(this.resultsView);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.completedLab);
             this.Controls.Add(this.totalTimeLab);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cpu1ProcTimeLbl);
@@ -451,7 +440,6 @@ namespace UAH_CS490
         private System.Windows.Forms.Label cpu1ProcTimeLbl;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label totalTimeLab;
-        private System.Windows.Forms.Label completedLab;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView resultsView;
         private System.Windows.Forms.Label cpu2ProcTimeLbl;

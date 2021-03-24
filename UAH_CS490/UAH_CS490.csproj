@@ -46,9 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CPU.cs" />
-    <Compile Include="OS.cs" />
-    <Compile Include="Process.cs" />
+    <Compile Include="Model\CPU.cs" />
+    <Compile Include="Model\OS.cs" />
+    <Compile Include="Model\Process.cs" />
     <Compile Include="GUI.cs">
       <SubType>Form</SubType>
     </Compile>
