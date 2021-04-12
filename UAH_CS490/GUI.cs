@@ -47,7 +47,7 @@ namespace UAH_CS490
         {
             os = new OS(this);
             totalTimeLab.Text = os.TotalElapsedTime.ToString();
-            formatResultsTable();
+            formatResultsTables();
             formatWaitQueueTable();
             FileHandler.createDT(currentlySelectedFilePath);
             FileBox.DataSource = FileHandler.dataFromFile;
@@ -59,47 +59,79 @@ namespace UAH_CS490
         }
 
         //making a table for data results from finished executions
-        private void formatResultsTable()
+        private void formatResultsTables()
         {
 
             // hard coding column headers
-            resultsView.AutoGenerateColumns = false;
-            resultsView.Columns.Clear();
-            resultsView.ColumnCount = 6;
-            resultsView.Columns[0].Name = "Name";
-            resultsView.Columns[0].DataPropertyName = "Name";
-            resultsView.Columns[1].Name = "Arrival Time";
-            resultsView.Columns[1].DataPropertyName = "ArrivalTime";
-            resultsView.Columns[2].Name = "Service Time";
-            resultsView.Columns[2].DataPropertyName = "ServiceTime";
-            resultsView.Columns[3].Name = "Finish Time";
-            resultsView.Columns[3].DataPropertyName = "FinishTime";
-            resultsView.Columns[4].Name = "Turnaround Time";
-            resultsView.Columns[4].DataPropertyName = "TurnaroundTime";
-            resultsView.Columns[5].Name = "Normalized TAT";
-            resultsView.Columns[5].DataPropertyName = "NormalizedTAT";
-            resultsView.Columns[5].DefaultCellStyle.Format = "N2";
+            cpu1ResultsBox.AutoGenerateColumns = false;
+            cpu1ResultsBox.Columns.Clear();
+            cpu1ResultsBox.ColumnCount = 6;
+            cpu1ResultsBox.Columns[0].Name = "Name";
+            cpu1ResultsBox.Columns[0].DataPropertyName = "Name";
+            cpu1ResultsBox.Columns[1].Name = "Arrival Time";
+            cpu1ResultsBox.Columns[1].DataPropertyName = "ArrivalTime";
+            cpu1ResultsBox.Columns[2].Name = "Service Time";
+            cpu1ResultsBox.Columns[2].DataPropertyName = "ServiceTime";
+            cpu1ResultsBox.Columns[3].Name = "Finish Time";
+            cpu1ResultsBox.Columns[3].DataPropertyName = "FinishTime";
+            cpu1ResultsBox.Columns[4].Name = "Turnaround Time";
+            cpu1ResultsBox.Columns[4].DataPropertyName = "TurnaroundTime";
+            cpu1ResultsBox.Columns[5].Name = "Normalized TAT";
+            cpu1ResultsBox.Columns[5].DataPropertyName = "NormalizedTAT";
+            cpu1ResultsBox.Columns[5].DefaultCellStyle.Format = "N2";
 
             // binding the datasource of the DGV to the os list of finishedProcs
-            resultsView.DataSource = os.FinishedProcs;
+            cpu1ResultsBox.DataSource = os.FinishedProcs;
+
+            // hard coding column headers
+            cpu2ResultsBox.AutoGenerateColumns = false;
+            cpu2ResultsBox.Columns.Clear();
+            cpu2ResultsBox.ColumnCount = 6;
+            cpu2ResultsBox.Columns[0].Name = "Name";
+            cpu2ResultsBox.Columns[0].DataPropertyName = "Name";
+            cpu2ResultsBox.Columns[1].Name = "Arrival Time";
+            cpu2ResultsBox.Columns[1].DataPropertyName = "ArrivalTime";
+            cpu2ResultsBox.Columns[2].Name = "Service Time";
+            cpu2ResultsBox.Columns[2].DataPropertyName = "ServiceTime";
+            cpu2ResultsBox.Columns[3].Name = "Finish Time";
+            cpu2ResultsBox.Columns[3].DataPropertyName = "FinishTime";
+            cpu2ResultsBox.Columns[4].Name = "Turnaround Time";
+            cpu2ResultsBox.Columns[4].DataPropertyName = "TurnaroundTime";
+            cpu2ResultsBox.Columns[5].Name = "Normalized TAT";
+            cpu2ResultsBox.Columns[5].DataPropertyName = "NormalizedTAT";
+            cpu2ResultsBox.Columns[5].DefaultCellStyle.Format = "N2";
+
+            // binding the datasource of the DGV to the os list of finishedProcs
+            cpu2ResultsBox.DataSource = os.FinishedProcs;
         }
 
         //making a table for the waiting queue
         private void formatWaitQueueTable()
         {
             // hard coding column headers
-            QueueBox.AutoGenerateColumns = false;
-            QueueBox.Columns.Clear();
-            QueueBox.ColumnCount = 2;
-            QueueBox.Columns[0].Name = "Process Name";
-            QueueBox.Columns[0].DataPropertyName = "Name";
-            QueueBox.Columns[1].Name = "Service Time";
-            QueueBox.Columns[1].DataPropertyName = "ServiceTime";
+            cpu1QueueBox.AutoGenerateColumns = false;
+            cpu1QueueBox.Columns.Clear();
+            cpu1QueueBox.ColumnCount = 2;
+            cpu1QueueBox.Columns[0].Name = "Process Name";
+            cpu1QueueBox.Columns[0].DataPropertyName = "Name";
+            cpu1QueueBox.Columns[1].Name = "Service Time";
+            cpu1QueueBox.Columns[1].DataPropertyName = "ServiceTime";
 
             // binding the datasource of the DGV to the OS queue for waiting processes
             // the OS has an intermediary BindingList called DisplayQueue so that the binding can occur
             // as C# queues cannot be bound to DGV's
-            QueueBox.DataSource = os.DisplayQueue;
+            cpu1QueueBox.DataSource = os.CPU1.DisplayQueue;
+
+            // hard coding column headers
+            cpu2QueueBox.AutoGenerateColumns = false;
+            cpu2QueueBox.Columns.Clear();
+            cpu2QueueBox.ColumnCount = 2;
+            cpu2QueueBox.Columns[0].Name = "Process Name";
+            cpu2QueueBox.Columns[0].DataPropertyName = "Name";
+            cpu2QueueBox.Columns[1].Name = "Service Time";
+            cpu2QueueBox.Columns[1].DataPropertyName = "ServiceTime";
+
+            cpu2QueueBox.DataSource = os.CPU2.DisplayQueue;
         }
 
         //button for selecting a file to read from
@@ -208,9 +240,10 @@ namespace UAH_CS490
 
         // This allows the data source for the Queue DGV to be updated every time the 
         // corresponding data structure changes
-        public void setQueueTable()
+        public void setQueueTables()
         {
-            QueueBox.DataSource = os.DisplayQueue;
+            cpu1QueueBox.DataSource = os.CPU1.DisplayQueue;
+            cpu2QueueBox.DataSource = os.CPU2.DisplayQueue;
         }
         // called during each GUI update
         public void setTotalTimeLbl()

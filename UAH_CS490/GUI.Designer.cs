@@ -38,7 +38,7 @@ namespace UAH_CS490
             this.currentPathLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.QueueBox = new System.Windows.Forms.DataGridView();
+            this.cpu1QueueBox = new System.Windows.Forms.DataGridView();
             this.conversionRateField = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,7 +50,7 @@ namespace UAH_CS490
             this.label8 = new System.Windows.Forms.Label();
             this.totalTimeLab = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.resultsView = new System.Windows.Forms.DataGridView();
+            this.cpu1ResultsBox = new System.Windows.Forms.DataGridView();
             this.cpu2ProcTimeLbl = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cpu2ProcNameLbl = new System.Windows.Forms.Label();
@@ -60,10 +60,14 @@ namespace UAH_CS490
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.resetBtn = new System.Windows.Forms.Button();
+            this.cpu2QueueBox = new System.Windows.Forms.DataGridView();
+            this.cpu2ResultsBox = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.FileBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.QueueBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.resultsView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cpu1QueueBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cpu1ResultsBox)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cpu2QueueBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cpu2ResultsBox)).BeginInit();
             this.SuspendLayout();
             // 
             // saveFileBtn
@@ -118,7 +122,7 @@ namespace UAH_CS490
             this.FileBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.FileBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.FileBox.Location = new System.Drawing.Point(43, 128);
-            this.FileBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FileBox.Margin = new System.Windows.Forms.Padding(4);
             this.FileBox.Name = "FileBox";
             this.FileBox.RowHeadersWidth = 62;
             this.FileBox.RowTemplate.Height = 28;
@@ -167,25 +171,25 @@ namespace UAH_CS490
             this.label3.TabIndex = 13;
             this.label3.Text = "Data from Selected File";
             // 
-            // QueueBox
+            // cpu1QueueBox
             // 
-            this.QueueBox.AllowUserToAddRows = false;
-            this.QueueBox.AllowUserToDeleteRows = false;
-            this.QueueBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.QueueBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.QueueBox.Location = new System.Drawing.Point(881, 158);
-            this.QueueBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.QueueBox.Name = "QueueBox";
-            this.QueueBox.ReadOnly = true;
-            this.QueueBox.RowHeadersWidth = 62;
-            this.QueueBox.RowTemplate.Height = 28;
-            this.QueueBox.Size = new System.Drawing.Size(326, 384);
-            this.QueueBox.TabIndex = 14;
+            this.cpu1QueueBox.AllowUserToAddRows = false;
+            this.cpu1QueueBox.AllowUserToDeleteRows = false;
+            this.cpu1QueueBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.cpu1QueueBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cpu1QueueBox.Location = new System.Drawing.Point(1070, 141);
+            this.cpu1QueueBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cpu1QueueBox.Name = "cpu1QueueBox";
+            this.cpu1QueueBox.ReadOnly = true;
+            this.cpu1QueueBox.RowHeadersWidth = 62;
+            this.cpu1QueueBox.RowTemplate.Height = 28;
+            this.cpu1QueueBox.Size = new System.Drawing.Size(326, 384);
+            this.cpu1QueueBox.TabIndex = 14;
             // 
             // conversionRateField
             // 
             this.conversionRateField.Location = new System.Drawing.Point(524, 679);
-            this.conversionRateField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.conversionRateField.Margin = new System.Windows.Forms.Padding(4);
             this.conversionRateField.Name = "conversionRateField";
             this.conversionRateField.Size = new System.Drawing.Size(121, 29);
             this.conversionRateField.TabIndex = 15;
@@ -216,10 +220,11 @@ namespace UAH_CS490
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(62, 19);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(881, 291);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 25);
+            this.label6.Size = new System.Drawing.Size(130, 44);
             this.label6.TabIndex = 18;
             this.label6.Text = "CPU 1";
             // 
@@ -293,29 +298,29 @@ namespace UAH_CS490
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(922, 70);
+            this.label10.Location = new System.Drawing.Point(1111, 53);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(210, 32);
             this.label10.TabIndex = 26;
             this.label10.Text = "Process Queue";
             // 
-            // resultsView
+            // cpu1ResultsBox
             // 
-            this.resultsView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.resultsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.resultsView.Location = new System.Drawing.Point(1233, 172);
-            this.resultsView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.resultsView.Name = "resultsView";
-            this.resultsView.RowHeadersWidth = 62;
-            this.resultsView.RowTemplate.Height = 28;
-            this.resultsView.Size = new System.Drawing.Size(668, 209);
-            this.resultsView.TabIndex = 27;
+            this.cpu1ResultsBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.cpu1ResultsBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cpu1ResultsBox.Location = new System.Drawing.Point(1443, 141);
+            this.cpu1ResultsBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cpu1ResultsBox.Name = "cpu1ResultsBox";
+            this.cpu1ResultsBox.RowHeadersWidth = 62;
+            this.cpu1ResultsBox.RowTemplate.Height = 28;
+            this.cpu1ResultsBox.Size = new System.Drawing.Size(668, 209);
+            this.cpu1ResultsBox.TabIndex = 27;
             // 
             // cpu2ProcTimeLbl
             // 
             this.cpu2ProcTimeLbl.AutoSize = true;
-            this.cpu2ProcTimeLbl.Location = new System.Drawing.Point(1608, 933);
+            this.cpu2ProcTimeLbl.Location = new System.Drawing.Point(1797, 916);
             this.cpu2ProcTimeLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cpu2ProcTimeLbl.Name = "cpu2ProcTimeLbl";
             this.cpu2ProcTimeLbl.Size = new System.Drawing.Size(23, 25);
@@ -326,7 +331,7 @@ namespace UAH_CS490
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(1434, 933);
+            this.label12.Location = new System.Drawing.Point(1623, 916);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(147, 24);
@@ -336,7 +341,7 @@ namespace UAH_CS490
             // cpu2ProcNameLbl
             // 
             this.cpu2ProcNameLbl.AutoSize = true;
-            this.cpu2ProcNameLbl.Location = new System.Drawing.Point(1608, 887);
+            this.cpu2ProcNameLbl.Location = new System.Drawing.Point(1797, 870);
             this.cpu2ProcNameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cpu2ProcNameLbl.Name = "cpu2ProcNameLbl";
             this.cpu2ProcNameLbl.Size = new System.Drawing.Size(40, 25);
@@ -347,7 +352,7 @@ namespace UAH_CS490
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(1434, 887);
+            this.label14.Location = new System.Drawing.Point(1623, 870);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(150, 24);
@@ -357,10 +362,11 @@ namespace UAH_CS490
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(1434, 839);
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(881, 709);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(70, 25);
+            this.label15.Size = new System.Drawing.Size(130, 44);
             this.label15.TabIndex = 28;
             this.label15.Text = "CPU 2";
             // 
@@ -368,7 +374,7 @@ namespace UAH_CS490
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(1422, 70);
+            this.label13.Location = new System.Drawing.Point(1611, 53);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(292, 32);
@@ -378,13 +384,12 @@ namespace UAH_CS490
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.cpu1ProcNameLbl);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.cpu1ProcTimeLbl);
-            this.panel1.Location = new System.Drawing.Point(1392, 407);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(1581, 390);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(336, 145);
             this.panel1.TabIndex = 34;
@@ -392,8 +397,8 @@ namespace UAH_CS490
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Location = new System.Drawing.Point(1392, 826);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Location = new System.Drawing.Point(1581, 809);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(336, 145);
             this.panel2.TabIndex = 35;
@@ -401,7 +406,7 @@ namespace UAH_CS490
             // resetBtn
             // 
             this.resetBtn.Location = new System.Drawing.Point(515, 779);
-            this.resetBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.resetBtn.Margin = new System.Windows.Forms.Padding(4);
             this.resetBtn.Name = "resetBtn";
             this.resetBtn.Size = new System.Drawing.Size(177, 72);
             this.resetBtn.TabIndex = 36;
@@ -409,12 +414,42 @@ namespace UAH_CS490
             this.resetBtn.UseVisualStyleBackColor = true;
             this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
             // 
+            // cpu2QueueBox
+            // 
+            this.cpu2QueueBox.AllowUserToAddRows = false;
+            this.cpu2QueueBox.AllowUserToDeleteRows = false;
+            this.cpu2QueueBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.cpu2QueueBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cpu2QueueBox.Location = new System.Drawing.Point(1070, 570);
+            this.cpu2QueueBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cpu2QueueBox.Name = "cpu2QueueBox";
+            this.cpu2QueueBox.ReadOnly = true;
+            this.cpu2QueueBox.RowHeadersWidth = 62;
+            this.cpu2QueueBox.RowTemplate.Height = 28;
+            this.cpu2QueueBox.Size = new System.Drawing.Size(326, 384);
+            this.cpu2QueueBox.TabIndex = 37;
+            // 
+            // cpu2ResultsBox
+            // 
+            this.cpu2ResultsBox.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.cpu2ResultsBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cpu2ResultsBox.Location = new System.Drawing.Point(1443, 570);
+            this.cpu2ResultsBox.Margin = new System.Windows.Forms.Padding(4);
+            this.cpu2ResultsBox.Name = "cpu2ResultsBox";
+            this.cpu2ResultsBox.RowHeadersWidth = 62;
+            this.cpu2ResultsBox.RowTemplate.Height = 28;
+            this.cpu2ResultsBox.Size = new System.Drawing.Size(668, 209);
+            this.cpu2ResultsBox.TabIndex = 38;
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2692, 1026);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cpu2ResultsBox);
+            this.Controls.Add(this.cpu2QueueBox);
             this.Controls.Add(this.resetBtn);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.cpu2ProcTimeLbl);
@@ -422,14 +457,14 @@ namespace UAH_CS490
             this.Controls.Add(this.cpu2ProcNameLbl);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.resultsView);
+            this.Controls.Add(this.cpu1ResultsBox);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.totalTimeLab);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.conversionRateField);
-            this.Controls.Add(this.QueueBox);
+            this.Controls.Add(this.cpu1QueueBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.currentPathLabel);
@@ -446,10 +481,12 @@ namespace UAH_CS490
             this.Text = "Process Execution Sim";
             this.Load += new System.EventHandler(this.GUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.FileBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.QueueBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.resultsView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cpu1QueueBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cpu1ResultsBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cpu2QueueBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cpu2ResultsBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -465,7 +502,7 @@ namespace UAH_CS490
         private System.Windows.Forms.Label currentPathLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView QueueBox;
+        private System.Windows.Forms.DataGridView cpu1QueueBox;
         private System.Windows.Forms.TextBox conversionRateField;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -477,7 +514,7 @@ namespace UAH_CS490
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label totalTimeLab;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataGridView resultsView;
+        private System.Windows.Forms.DataGridView cpu1ResultsBox;
         private System.Windows.Forms.Label cpu2ProcTimeLbl;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label cpu2ProcNameLbl;
@@ -487,6 +524,8 @@ namespace UAH_CS490
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button resetBtn;
+        private System.Windows.Forms.DataGridView cpu2QueueBox;
+        private System.Windows.Forms.DataGridView cpu2ResultsBox;
     }
 }
 

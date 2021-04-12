@@ -27,9 +27,9 @@ namespace UAH_CS490
         //so everytime the queue changes the GUI table needs to be updated
         //however, only lists are allowed to be the data sources for GUI tables
         //so we use an intermediary list called display queue to store the process data, which then gets bound to the GUI
-        private Queue<Process> processQueue = new Queue<Process>();
-        internal List<Process> DisplayQueue { get => displayQueue; set => displayQueue = value; }
-        private List<Process> displayQueue;
+        //private Queue<Process> processQueue = new Queue<Process>();
+        //internal List<Process> DisplayQueue { get => displayQueue; set => displayQueue = value; }
+        //private List<Process> displayQueue;
 
         // data structure to hold processes that have been read from file but not put in queue yet
         private List<Process> unarrivedProcs;
@@ -142,7 +142,7 @@ namespace UAH_CS490
         public async Task checkSystemIdle()
         {
             // if the process queue is empty, and neither cpu is currently working on a process: the OS goes idle
-            if ((processQueue.Count == 0) && (Cores.Where(c => c.CurrentProcess == null).Count() == Cores.Count))
+            if ((cpu1.ProcessQueue.Count == 0) && (cpu2.ProcessQueue.Count == 0) && (Cores.Where(c => c.CurrentProcess == null).Count() == Cores.Count))
             {
                 Console.WriteLine("time " + TotalElapsedTime + ": " + "system now idle");
                 await Task.Delay(clockUnit);
@@ -161,9 +161,9 @@ namespace UAH_CS490
         //if it is empty then leave an empty message
         private void dispatch(CPU cpu)
         {
-            if (processQueue.Count > 0)
+            if (cpu.ProcessQueue.Count > 0)
             {
-                cpu.CurrentProcess = processQueue.Dequeue();
+                cpu.CurrentProcess = cpu.ProcessQueue.Dequeue();
                 Console.WriteLine("time " + TotalElapsedTime + ": " + cpu.CurrentProcess.Name + " dispatched to " + cpu.Name);
                 updateDisplay();
             }
@@ -184,10 +184,25 @@ namespace UAH_CS490
             List<Process> arrived = unarrivedProcs.Where(p => TotalElapsedTime >= p.ArrivalTime).ToList();
             foreach (Process p in arrived)
             {
-                p.ArrivalTime = TotalElapsedTime;
-                processQueue.Enqueue(p);
+                Process copy1 = new Process
+                {
+                    Name = p.Name,
+                    ArrivalTime = p.ArrivalTime,
+                    ServiceTime = p.ServiceTime,
+                    TimeRemaining = p.ServiceTime
+                };
+                Process copy2 = new Process
+                {
+                    Name = p.Name,
+                    ArrivalTime = p.ArrivalTime,
+                    ServiceTime = p.ServiceTime,
+                    TimeRemaining = p.ServiceTime
+                };
+                //p.ArrivalTime = TotalElapsedTime;
+                cpu1.ProcessQueue.Enqueue(copy1);
+                cpu2.ProcessQueue.Enqueue(copy2);
                 unarrivedProcs.Remove(p);
-                Console.WriteLine("time " + TotalElapsedTime + ": " + p.Name + " added to process queue");
+                Console.WriteLine("time " + TotalElapsedTime + ": " + p.Name + " added to both process queues");
             }
             updateDisplay();
         }
@@ -195,8 +210,9 @@ namespace UAH_CS490
         //Update GUI Display for: Queue, Process, Total Time
         private void updateDisplay()
         {
-            displayQueue = processQueue.ToList();
-            gui.setQueueTable();
+            cpu1.DisplayQueue = cpu1.ProcessQueue.ToList();
+            cpu2.DisplayQueue = cpu2.ProcessQueue.ToList();
+            gui.setQueueTables();
             gui.setProcessLabels();
             gui.setTotalTimeLbl();
 

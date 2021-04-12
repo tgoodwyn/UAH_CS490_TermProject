@@ -17,6 +17,17 @@ namespace UAH_CS490
         public string Name { get => name; set => name = value; }
         internal OS OS { get => os; set => os = value; }
 
+        //we use a queue to store waiting processes
+        //whenever a CPU becomes ready to execute a new process it grabs a new process from the queue
+        //this queue is represented as a table in the GUI
+        //so everytime the queue changes the GUI table needs to be updated
+        //however, only lists are allowed to be the data sources for GUI tables
+        //so we use an intermediary list called display queue to store the process data, which then gets bound to the GUI
+        private Queue<Process> processQueue = new Queue<Process>();
+        internal Queue<Process> ProcessQueue { get => processQueue; set => processQueue = value; }
+        internal List<Process> DisplayQueue { get => displayQueue; set => displayQueue = value; }
+        private List<Process> displayQueue;
+
         //checks to see if it has a current process to execute
         //if yes then execute the process, calling executePs()
         //if no then call idle()
