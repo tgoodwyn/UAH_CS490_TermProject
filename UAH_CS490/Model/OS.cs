@@ -186,7 +186,7 @@ namespace UAH_CS490
                     {
                         if (cpu.CurrentProcess != null)
                         {
-                            Console.WriteLine("time " + TotalElapsedTime + ": " + cpu.CurrentProcess.Name + "preempted on " + cpu.Name);
+                            Console.WriteLine("time " + TotalElapsedTime + ": " + cpu.CurrentProcess.Name + " preempted on " + cpu.Name);
                             cpu.ProcessQueue.Enqueue(cpu.CurrentProcess);
                             cpu.CurrentProcess = null;
                         }

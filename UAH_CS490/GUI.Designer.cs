@@ -62,6 +62,8 @@ namespace UAH_CS490
             this.resetBtn = new System.Windows.Forms.Button();
             this.cpu2QueueBox = new System.Windows.Forms.DataGridView();
             this.cpu2ResultsBox = new System.Windows.Forms.DataGridView();
+            this.label11 = new System.Windows.Forms.Label();
+            this.timesliceField = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.FileBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cpu1QueueBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cpu1ResultsBox)).BeginInit();
@@ -156,7 +158,7 @@ namespace UAH_CS490
             this.label2.Location = new System.Drawing.Point(210, 450);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(293, 25);
+            this.label2.Size = new System.Drawing.Size(197, 18);
             this.label2.TabIndex = 12;
             this.label2.Text = "Edit table to add/change data";
             // 
@@ -167,7 +169,7 @@ namespace UAH_CS490
             this.label3.Location = new System.Drawing.Point(209, 49);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(311, 32);
+            this.label3.Size = new System.Drawing.Size(214, 25);
             this.label3.TabIndex = 13;
             this.label3.Text = "Data from Selected File";
             // 
@@ -224,7 +226,7 @@ namespace UAH_CS490
             this.label6.Location = new System.Drawing.Point(881, 291);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(130, 44);
+            this.label6.Size = new System.Drawing.Size(94, 31);
             this.label6.TabIndex = 18;
             this.label6.Text = "CPU 1";
             // 
@@ -236,7 +238,7 @@ namespace UAH_CS490
             this.label7.Location = new System.Drawing.Point(62, 67);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(150, 24);
+            this.label7.Size = new System.Drawing.Size(114, 17);
             this.label7.TabIndex = 19;
             this.label7.Text = "Current Process:";
             // 
@@ -259,7 +261,7 @@ namespace UAH_CS490
             this.label9.Location = new System.Drawing.Point(62, 112);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(147, 24);
+            this.label9.Size = new System.Drawing.Size(109, 17);
             this.label9.TabIndex = 21;
             this.label9.Text = "Time remaining:";
             // 
@@ -301,7 +303,7 @@ namespace UAH_CS490
             this.label10.Location = new System.Drawing.Point(1111, 53);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(210, 32);
+            this.label10.Size = new System.Drawing.Size(148, 25);
             this.label10.TabIndex = 26;
             this.label10.Text = "Process Queue";
             // 
@@ -334,7 +336,7 @@ namespace UAH_CS490
             this.label12.Location = new System.Drawing.Point(1623, 916);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(147, 24);
+            this.label12.Size = new System.Drawing.Size(109, 17);
             this.label12.TabIndex = 31;
             this.label12.Text = "Time remaining:";
             // 
@@ -355,7 +357,7 @@ namespace UAH_CS490
             this.label14.Location = new System.Drawing.Point(1623, 870);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(150, 24);
+            this.label14.Size = new System.Drawing.Size(114, 17);
             this.label14.TabIndex = 29;
             this.label14.Text = "Current Process:";
             // 
@@ -366,7 +368,7 @@ namespace UAH_CS490
             this.label15.Location = new System.Drawing.Point(881, 709);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(130, 44);
+            this.label15.Size = new System.Drawing.Size(94, 31);
             this.label15.TabIndex = 28;
             this.label15.Text = "CPU 2";
             // 
@@ -377,7 +379,7 @@ namespace UAH_CS490
             this.label13.Location = new System.Drawing.Point(1611, 53);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(292, 32);
+            this.label13.Size = new System.Drawing.Size(204, 25);
             this.label13.TabIndex = 33;
             this.label13.Text = "Completed Processes";
             // 
@@ -441,12 +443,34 @@ namespace UAH_CS490
             this.cpu2ResultsBox.Size = new System.Drawing.Size(668, 209);
             this.cpu2ResultsBox.TabIndex = 38;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(882, 346);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(158, 25);
+            this.label11.TabIndex = 39;
+            this.label11.Text = "Time slice length";
+            // 
+            // timesliceField
+            // 
+            this.timesliceField.Location = new System.Drawing.Point(887, 390);
+            this.timesliceField.Margin = new System.Windows.Forms.Padding(4);
+            this.timesliceField.Name = "timesliceField";
+            this.timesliceField.Size = new System.Drawing.Size(121, 29);
+            this.timesliceField.TabIndex = 40;
+            this.timesliceField.Text = "2";
+            this.timesliceField.TextChanged += new System.EventHandler(this.timesliceField_TextChanged);
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2692, 1026);
+            this.ClientSize = new System.Drawing.Size(1924, 1026);
+            this.Controls.Add(this.timesliceField);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cpu2ResultsBox);
             this.Controls.Add(this.cpu2QueueBox);
@@ -526,6 +550,8 @@ namespace UAH_CS490
         private System.Windows.Forms.Button resetBtn;
         private System.Windows.Forms.DataGridView cpu2QueueBox;
         private System.Windows.Forms.DataGridView cpu2ResultsBox;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox timesliceField;
     }
 }
 

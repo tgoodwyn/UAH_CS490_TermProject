@@ -55,6 +55,7 @@ namespace UAH_CS490
 
             currentPathLabel.Text = currentlySelectedFilePath;
             OS.clockUnit = int.Parse(conversionRateField.Text);
+            OS.quantumMax = int.Parse(timesliceField.Text);
 
         }
 
@@ -256,6 +257,21 @@ namespace UAH_CS490
         {
             loaded = false;
             os.resetOS();
+        }
+
+        private void timesliceField_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // must be an integer
+                OS.quantumMax = int.Parse(timesliceField.Text);
+            }
+            catch
+            {
+                // if a non-integer is entered, set it to default value of 1000
+                timesliceField.Text = 2.ToString();
+                OS.quantumMax = int.Parse(timesliceField.Text);
+            }
         }
     }
 }
