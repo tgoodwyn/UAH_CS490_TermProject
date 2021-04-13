@@ -268,17 +268,6 @@ namespace UAH_CS490
 
         private void timesliceField_TextChanged(object sender, EventArgs e)
         {
-            //    try
-            //    {
-            //        // must be an integer
-            //        OS.quantumMax = int.Parse(timesliceField.Text);
-            //    }
-            //    catch
-            //    {
-            //        // if a non-integer is entered, set it to default value of 1000
-            //        timesliceField.Text = 2.ToString();
-            //        OS.quantumMax = int.Parse(timesliceField.Text);
-            //    }
         }
     private void verifyTimesliceField()
         {

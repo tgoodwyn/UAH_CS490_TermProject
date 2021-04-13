@@ -21,6 +21,8 @@ namespace UAH_CS490
         private float normalizedTAT;
         private int priority;
 
+        private float responseRatio;
+
         //These are the properties for each of those variables so that they can be accessed outside of this class
         public int ArrivalTime { get => arrivalTime; set => arrivalTime = value; }
         public int ServiceTime { get => serviceTime; set => serviceTime = value; }
@@ -30,5 +32,6 @@ namespace UAH_CS490
         public float NormalizedTAT { get => normalizedTAT; set => normalizedTAT = value; }
         public int FinishTime { get => finishTime; set => finishTime = value; }
         public int Priority { get => priority; set => priority = value; }
+        public float ResponseRatio { get => responseRatio; set => responseRatio = value; }
     }
 }

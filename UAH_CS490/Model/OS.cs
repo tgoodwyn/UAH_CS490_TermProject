@@ -70,7 +70,7 @@ namespace UAH_CS490
         {
             this.gui = gui;
             CPU1 = new CPU { OS = this, Name = "CPU 1 (RR)" };
-            CPU2 = new CPU { OS = this, Name = "CPU 2" };
+            CPU2 = new CPU { OS = this, Name = "CPU 2 (HRRN)" };
             Cores = new List<CPU> { CPU1, CPU2 };
             unarrivedProcs = new List<Process>();
         }
@@ -165,6 +165,7 @@ namespace UAH_CS490
             if (cpu.ProcessQueue.Count > 0)
             {
                 cpu.QuantumCount = 0;
+                if (cpu.Name == "CPU 2 (HRRN)") hrrnSort(cpu);
                 cpu.CurrentProcess = cpu.ProcessQueue.Dequeue();
                 Console.WriteLine("time " + TotalElapsedTime + ": " + cpu.CurrentProcess.Name + " dispatched to " + cpu.Name);
                 updateDisplay();
@@ -176,6 +177,23 @@ namespace UAH_CS490
             }
         }
 
+        private void hrrnSort(CPU cpu)
+        {
+            List<Process> tempList = new List<Process>();
+            foreach (var p in cpu.ProcessQueue)
+            {
+                p.ResponseRatio = (float)(totalElapsedTime - p.ArrivalTime) / p.ServiceTime;
+                tempList.Add(p);
+            }
+            cpu.ProcessQueue.Clear();
+            tempList = tempList.OrderByDescending(p => p.ResponseRatio).ToList();
+            foreach (var p in tempList)
+            {
+                cpu.ProcessQueue.Enqueue(p);
+            }
+
+
+        }
         private void preempt()
         {
             foreach (CPU cpu in Cores)
