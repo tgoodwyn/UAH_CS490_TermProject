@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,15 @@ namespace UAH_CS490
         internal List<Process> DisplayQueue { get => displayQueue; set => displayQueue = value; }
         private List<Process> displayQueue;
 
+        // data source for the result table        
+        private BindingList<Process> finishedProcs = new BindingList<Process>();
+        internal BindingList<Process> FinishedProcs { get => finishedProcs; set => finishedProcs = value; }
+
+        // UPDATE FOR VERSION 3
+
+        private int quantumCount;
+        public int QuantumCount { get => quantumCount; set => quantumCount = value; }
+
         //checks to see if it has a current process to execute
         //if yes then execute the process, calling executePs()
         //if no then call idle()
@@ -35,6 +45,7 @@ namespace UAH_CS490
         {
             if (currentProcess != null)
             {
+                quantumCount++;
                 await executePs();
             }
             else
@@ -75,7 +86,7 @@ namespace UAH_CS490
             Console.WriteLine("time " + os.TotalElapsedTime + ": " + name + " finishes " + currentProcess.Name);
             Process cp = currentProcess;
             int adjustedFinish = os.TotalElapsedTime + 1;
-            os.FinishedProcs.Add(new Process
+            finishedProcs.Add(new Process
             {
                 Name = cp.Name,
                 ServiceTime = cp.ServiceTime,

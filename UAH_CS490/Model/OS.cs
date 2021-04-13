@@ -13,30 +13,22 @@ namespace UAH_CS490
     {
 
 
-        //
+        //====================
         // data structures
-        //
+        //====================
 
-        // data source for the result table        
-        private BindingList<Process> finishedProcs = new BindingList<Process>();
-        internal BindingList<Process> FinishedProcs { get => finishedProcs; set => finishedProcs = value; }
 
-        //we use a queue to store waiting processes
-        //whenever a CPU becomes ready to execute a new process it grabs a new process from the queue
-        //this queue is represented as a table in the GUI
-        //so everytime the queue changes the GUI table needs to be updated
-        //however, only lists are allowed to be the data sources for GUI tables
-        //so we use an intermediary list called display queue to store the process data, which then gets bound to the GUI
-        //private Queue<Process> processQueue = new Queue<Process>();
-        //internal List<Process> DisplayQueue { get => displayQueue; set => displayQueue = value; }
-        //private List<Process> displayQueue;
+        /// UPDATE FOR VERSION 3
+        // Only data structures still belonging to the OS is the list of unarrived processes . all the other data structures now belong to the CPU objects .
+        /// UPDATE FOR VERSION 3
+
 
         // data structure to hold processes that have been read from file but not put in queue yet
         private List<Process> unarrivedProcs;
-        
-        //
+
+        //===================================
         // REFERENCES TO other class objects
-        //
+        //===================================
 
         // references to the CPU's individually, and as a list
         private CPU cpu1;
@@ -51,11 +43,10 @@ namespace UAH_CS490
         private GUI gui;
 
 
-        //
+        //===================================
         // Variables for managing state
-        //
+        //===================================
 
-        
         private bool pause = false; // how to start and stop the system
         private bool idle = false; // to mark when neither cpu is executing, so that the os itself advances the clock
 
@@ -68,11 +59,17 @@ namespace UAH_CS490
         public int TotalElapsedTime { get => totalElapsedTime; set => totalElapsedTime = value; } // not required but a way to show how much time has elapsed since simulation began
 
 
+        // 
+        // Round Robin variables
+        //
+
+        public static int quantumMax = 2; //
+
 
         public OS(GUI gui)
         {
             this.gui = gui;
-            CPU1 = new CPU { OS = this, Name = "CPU 1" };
+            CPU1 = new CPU { OS = this, Name = "CPU 1 (RR)" };
             CPU2 = new CPU { OS = this, Name = "CPU 2" };
             Cores = new List<CPU> { CPU1, CPU2 };
             unarrivedProcs = new List<Process>();
@@ -100,6 +97,7 @@ namespace UAH_CS490
             while (!pause)
             {
                 checkArrivals();
+                preempt();
                 await checkSystemIdle();
                 if (!idle)
                 {
@@ -134,7 +132,10 @@ namespace UAH_CS490
         {
             pause = true;
             unarrivedProcs.Clear();
-            FinishedProcs.Clear();
+            cpu1.FinishedProcs.Clear();
+            cpu2.FinishedProcs.Clear(); 
+            cpu1.CurrentProcess = null;
+            cpu2.CurrentProcess = null;
             TotalElapsedTime = 0;
             updateDisplay();
         }
@@ -163,9 +164,10 @@ namespace UAH_CS490
         {
             if (cpu.ProcessQueue.Count > 0)
             {
+                cpu.QuantumCount = 0;
                 cpu.CurrentProcess = cpu.ProcessQueue.Dequeue();
                 Console.WriteLine("time " + TotalElapsedTime + ": " + cpu.CurrentProcess.Name + " dispatched to " + cpu.Name);
-                updateDisplay();
+                //updateDisplay();
             }
             // if there are no processes in queue, return from the function and log a message to console
             else
@@ -174,6 +176,23 @@ namespace UAH_CS490
             }
         }
 
+        private void preempt()
+        {
+            foreach (CPU cpu in Cores)
+            {
+                if (cpu.Name == "CPU 1 (RR)")
+                {
+                    if (cpu.QuantumCount == quantumMax)
+                    {
+                        if (cpu.CurrentProcess != null)
+                        {
+                            Console.WriteLine("time " + TotalElapsedTime + ": " + cpu.CurrentProcess.Name + "preempted on " + cpu.Name);
+                            cpu.ProcessQueue.Enqueue(cpu.CurrentProcess);
+                            cpu.CurrentProcess = null;
+                        }
+                    }
+                }
+            } }
         //Check Arrivals Function
         //If any unarrived processes have a Total Elapased Time greater than or equal to the Arrival Time, then store in vector
         //Loop through each Process, and for reach arrived process: 
@@ -225,7 +244,8 @@ namespace UAH_CS490
         // system time
         public void loadFileData()
         {
-            
+            cpu1.ProcessQueue.Clear();
+            cpu2.ProcessQueue.Clear();
             foreach (DataRow row in FileHandler.dataFromFile.Rows)
             {
 

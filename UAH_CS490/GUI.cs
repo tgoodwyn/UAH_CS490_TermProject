@@ -81,7 +81,7 @@ namespace UAH_CS490
             cpu1ResultsBox.Columns[5].DefaultCellStyle.Format = "N2";
 
             // binding the datasource of the DGV to the os list of finishedProcs
-            cpu1ResultsBox.DataSource = os.FinishedProcs;
+            cpu1ResultsBox.DataSource = os.CPU1.FinishedProcs;
 
             // hard coding column headers
             cpu2ResultsBox.AutoGenerateColumns = false;
@@ -102,7 +102,7 @@ namespace UAH_CS490
             cpu2ResultsBox.Columns[5].DefaultCellStyle.Format = "N2";
 
             // binding the datasource of the DGV to the os list of finishedProcs
-            cpu2ResultsBox.DataSource = os.FinishedProcs;
+            cpu2ResultsBox.DataSource = os.CPU2.FinishedProcs;
         }
 
         //making a table for the waiting queue
