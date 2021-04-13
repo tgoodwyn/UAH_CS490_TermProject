@@ -167,7 +167,7 @@ namespace UAH_CS490
                 cpu.QuantumCount = 0;
                 cpu.CurrentProcess = cpu.ProcessQueue.Dequeue();
                 Console.WriteLine("time " + TotalElapsedTime + ": " + cpu.CurrentProcess.Name + " dispatched to " + cpu.Name);
-                //updateDisplay();
+                updateDisplay();
             }
             // if there are no processes in queue, return from the function and log a message to console
             else
@@ -234,6 +234,7 @@ namespace UAH_CS490
             gui.setQueueTables();
             gui.setProcessLabels();
             gui.setTotalTimeLbl();
+            gui.setNTATAvgs();
 
         }
 

@@ -64,10 +64,15 @@ namespace UAH_CS490
             this.cpu2ResultsBox = new System.Windows.Forms.DataGridView();
             this.label11 = new System.Windows.Forms.Label();
             this.timesliceField = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.cpu1AVGNTATLabel = new System.Windows.Forms.Label();
+            this.cpu2AVGNTATLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FileBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cpu1QueueBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cpu1ResultsBox)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cpu2QueueBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cpu2ResultsBox)).BeginInit();
             this.SuspendLayout();
@@ -235,7 +240,7 @@ namespace UAH_CS490
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.SystemColors.Control;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(62, 67);
+            this.label7.Location = new System.Drawing.Point(58, 12);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(114, 17);
@@ -246,7 +251,7 @@ namespace UAH_CS490
             // 
             this.cpu1ProcNameLbl.AutoSize = true;
             this.cpu1ProcNameLbl.BackColor = System.Drawing.SystemColors.Control;
-            this.cpu1ProcNameLbl.Location = new System.Drawing.Point(236, 67);
+            this.cpu1ProcNameLbl.Location = new System.Drawing.Point(232, 12);
             this.cpu1ProcNameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cpu1ProcNameLbl.Name = "cpu1ProcNameLbl";
             this.cpu1ProcNameLbl.Size = new System.Drawing.Size(40, 25);
@@ -258,7 +263,7 @@ namespace UAH_CS490
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.SystemColors.Control;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(62, 112);
+            this.label9.Location = new System.Drawing.Point(58, 57);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(109, 17);
@@ -269,7 +274,7 @@ namespace UAH_CS490
             // 
             this.cpu1ProcTimeLbl.AutoSize = true;
             this.cpu1ProcTimeLbl.BackColor = System.Drawing.SystemColors.Control;
-            this.cpu1ProcTimeLbl.Location = new System.Drawing.Point(236, 112);
+            this.cpu1ProcTimeLbl.Location = new System.Drawing.Point(232, 57);
             this.cpu1ProcTimeLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cpu1ProcTimeLbl.Name = "cpu1ProcTimeLbl";
             this.cpu1ProcTimeLbl.Size = new System.Drawing.Size(23, 25);
@@ -322,7 +327,8 @@ namespace UAH_CS490
             // cpu2ProcTimeLbl
             // 
             this.cpu2ProcTimeLbl.AutoSize = true;
-            this.cpu2ProcTimeLbl.Location = new System.Drawing.Point(1797, 916);
+            this.cpu2ProcTimeLbl.BackColor = System.Drawing.SystemColors.Control;
+            this.cpu2ProcTimeLbl.Location = new System.Drawing.Point(237, 61);
             this.cpu2ProcTimeLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cpu2ProcTimeLbl.Name = "cpu2ProcTimeLbl";
             this.cpu2ProcTimeLbl.Size = new System.Drawing.Size(23, 25);
@@ -332,8 +338,9 @@ namespace UAH_CS490
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.SystemColors.Control;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(1623, 916);
+            this.label12.Location = new System.Drawing.Point(63, 61);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(109, 17);
@@ -343,7 +350,8 @@ namespace UAH_CS490
             // cpu2ProcNameLbl
             // 
             this.cpu2ProcNameLbl.AutoSize = true;
-            this.cpu2ProcNameLbl.Location = new System.Drawing.Point(1797, 870);
+            this.cpu2ProcNameLbl.BackColor = System.Drawing.SystemColors.Control;
+            this.cpu2ProcNameLbl.Location = new System.Drawing.Point(237, 15);
             this.cpu2ProcNameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cpu2ProcNameLbl.Name = "cpu2ProcNameLbl";
             this.cpu2ProcNameLbl.Size = new System.Drawing.Size(40, 25);
@@ -353,8 +361,9 @@ namespace UAH_CS490
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.SystemColors.Control;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(1623, 870);
+            this.label14.Location = new System.Drawing.Point(63, 15);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(114, 17);
@@ -390,19 +399,23 @@ namespace UAH_CS490
             this.panel1.Controls.Add(this.cpu1ProcNameLbl);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.cpu1ProcTimeLbl);
-            this.panel1.Location = new System.Drawing.Point(1581, 390);
+            this.panel1.Location = new System.Drawing.Point(1516, 372);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(336, 145);
+            this.panel1.Size = new System.Drawing.Size(336, 96);
             this.panel1.TabIndex = 34;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Location = new System.Drawing.Point(1581, 809);
+            this.panel2.Controls.Add(this.label14);
+            this.panel2.Controls.Add(this.cpu2ProcNameLbl);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.cpu2ProcTimeLbl);
+            this.panel2.Location = new System.Drawing.Point(1516, 796);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(336, 145);
+            this.panel2.Size = new System.Drawing.Size(336, 99);
             this.panel2.TabIndex = 35;
             // 
             // resetBtn
@@ -463,12 +476,62 @@ namespace UAH_CS490
             this.timesliceField.Text = "2";
             this.timesliceField.TextChanged += new System.EventHandler(this.timesliceField_TextChanged);
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.4F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(1888, 372);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(139, 31);
+            this.label16.TabIndex = 41;
+            this.label16.Text = "Avg nTAT";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.4F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(1888, 796);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(139, 31);
+            this.label17.TabIndex = 42;
+            this.label17.Text = "Avg nTAT";
+            // 
+            // cpu1AVGNTAT
+            // 
+            this.cpu1AVGNTATLabel.AutoSize = true;
+            this.cpu1AVGNTATLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.cpu1AVGNTATLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.4F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cpu1AVGNTATLabel.Location = new System.Drawing.Point(1927, 408);
+            this.cpu1AVGNTATLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.cpu1AVGNTATLabel.Name = "cpu1AVGNTAT";
+            this.cpu1AVGNTATLabel.Size = new System.Drawing.Size(54, 31);
+            this.cpu1AVGNTATLabel.TabIndex = 43;
+            this.cpu1AVGNTATLabel.Text = "n/a";
+            // 
+            // cpu2AVGNTAT
+            // 
+            this.cpu2AVGNTATLabel.AutoSize = true;
+            this.cpu2AVGNTATLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.cpu2AVGNTATLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.4F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cpu2AVGNTATLabel.Location = new System.Drawing.Point(1927, 833);
+            this.cpu2AVGNTATLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.cpu2AVGNTATLabel.Name = "cpu2AVGNTAT";
+            this.cpu2AVGNTATLabel.Size = new System.Drawing.Size(54, 31);
+            this.cpu2AVGNTATLabel.TabIndex = 44;
+            this.cpu2AVGNTATLabel.Text = "n/a";
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1924, 1026);
+            this.ClientSize = new System.Drawing.Size(2020, 1026);
+            this.Controls.Add(this.cpu2AVGNTATLabel);
+            this.Controls.Add(this.cpu1AVGNTATLabel);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.timesliceField);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label6);
@@ -476,10 +539,6 @@ namespace UAH_CS490
             this.Controls.Add(this.cpu2QueueBox);
             this.Controls.Add(this.resetBtn);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.cpu2ProcTimeLbl);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.cpu2ProcNameLbl);
-            this.Controls.Add(this.label14);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.cpu1ResultsBox);
             this.Controls.Add(this.label10);
@@ -509,6 +568,8 @@ namespace UAH_CS490
             ((System.ComponentModel.ISupportInitialize)(this.cpu1ResultsBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cpu2QueueBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cpu2ResultsBox)).EndInit();
             this.ResumeLayout(false);
@@ -552,6 +613,10 @@ namespace UAH_CS490
         private System.Windows.Forms.DataGridView cpu2ResultsBox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox timesliceField;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label cpu1AVGNTATLabel;
+        private System.Windows.Forms.Label cpu2AVGNTATLabel;
     }
 }
 

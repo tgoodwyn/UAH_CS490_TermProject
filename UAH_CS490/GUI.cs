@@ -52,7 +52,6 @@ namespace UAH_CS490
             FileHandler.createDT(currentlySelectedFilePath);
             FileBox.DataSource = FileHandler.dataFromFile;
 
-
             currentPathLabel.Text = currentlySelectedFilePath;
             OS.clockUnit = int.Parse(conversionRateField.Text);
             OS.quantumMax = int.Parse(timesliceField.Text);
@@ -177,6 +176,7 @@ namespace UAH_CS490
                 // and the first time you click start
                 os.loadFileData();
                 loaded = true;
+                verifyTimesliceField();
             }
             os.startOS();
         }
@@ -239,6 +239,13 @@ namespace UAH_CS490
             }
         }
 
+        public void setNTATAvgs()
+        {
+            cpu1AVGNTATLabel.Text = Math.Round(os.CPU1.AvgNTAT,2).ToString();
+            cpu2AVGNTATLabel.Text = Math.Round(os.CPU2.AvgNTAT,2).ToString();
+
+        }
+
         // This allows the data source for the Queue DGV to be updated every time the 
         // corresponding data structure changes
         public void setQueueTables()
@@ -260,6 +267,20 @@ namespace UAH_CS490
         }
 
         private void timesliceField_TextChanged(object sender, EventArgs e)
+        {
+            //    try
+            //    {
+            //        // must be an integer
+            //        OS.quantumMax = int.Parse(timesliceField.Text);
+            //    }
+            //    catch
+            //    {
+            //        // if a non-integer is entered, set it to default value of 1000
+            //        timesliceField.Text = 2.ToString();
+            //        OS.quantumMax = int.Parse(timesliceField.Text);
+            //    }
+        }
+    private void verifyTimesliceField()
         {
             try
             {

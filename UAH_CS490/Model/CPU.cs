@@ -38,6 +38,9 @@ namespace UAH_CS490
         private int quantumCount;
         public int QuantumCount { get => quantumCount; set => quantumCount = value; }
 
+        private float avgNTAT =0f;
+        public float AvgNTAT { get => avgNTAT; set => avgNTAT = value; }
+
         //checks to see if it has a current process to execute
         //if yes then execute the process, calling executePs()
         //if no then call idle()
@@ -95,7 +98,22 @@ namespace UAH_CS490
                 TurnaroundTime = adjustedFinish - cp.ArrivalTime,
                 NormalizedTAT = (float)(adjustedFinish - cp.ArrivalTime) / (float)cp.ServiceTime
             });
+            //finishedProcs = finishedProcs.OrderBy(m => m.Name).ToList();
+            //finishedProcs.Sort((p, q) => p.Category.CompareTo(q.Category))
+
             currentProcess = null;
+
+            calculateAvgNTAT();
+        }
+
+        private void calculateAvgNTAT()
+        {
+            float sum = 0f;
+            foreach(var p in finishedProcs)
+            {
+                sum += p.NormalizedTAT;
+            }
+            avgNTAT = sum / finishedProcs.Count;
         }
 
     }
