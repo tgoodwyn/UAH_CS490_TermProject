@@ -12,16 +12,17 @@ namespace UAH_CS490
     class OS
     {
 
+        // +++++++++VERSION 3 NOTES+++++++++++++
+        // changes noted where they occur 
+        // ++++++++++++++++++++++++++++++++++++++++
 
         //====================
-        // data structures
+        // OS data structures
         //====================
 
-
-        /// UPDATE FOR VERSION 3
+        // +++++++++UPDATE FOR VERSION 3+++++++++++++
         // Only data structures still belonging to the OS is the list of unarrived processes . all the other data structures now belong to the CPU objects .
-        /// UPDATE FOR VERSION 3
-
+        // ++++++++++++++++++++++++++++++++++++++++++
 
         // data structure to hold processes that have been read from file but not put in queue yet
         private List<Process> unarrivedProcs;
@@ -50,18 +51,18 @@ namespace UAH_CS490
         private bool pause = false; // how to start and stop the system
         private bool idle = false; // to mark when neither cpu is executing, so that the os itself advances the clock
 
-        // 
+        //=================
         // time variables
-        //
+        //=================
 
         public static int clockUnit = 3000; // set by the GUI
         private int totalElapsedTime = 0;
         public int TotalElapsedTime { get => totalElapsedTime; set => totalElapsedTime = value; } // not required but a way to show how much time has elapsed since simulation began
 
 
-        // 
+        // +++++++++++++++++++++++
         // Round Robin variables
-        //
+        // +++++++++++++++++++++++
 
         public static int quantumMax = 2; //
 
@@ -97,7 +98,7 @@ namespace UAH_CS490
             while (!pause)
             {
                 checkArrivals();
-                preempt();
+                preempt(); // +++++++++v3++++++++++
                 await checkSystemIdle();
                 if (!idle)
                 {
@@ -164,8 +165,10 @@ namespace UAH_CS490
         {
             if (cpu.ProcessQueue.Count > 0)
             {
-                cpu.QuantumCount = 0;
-                if (cpu.Name == "CPU 2 (HRRN)") hrrnSort(cpu);
+                // +++++++++v3++++++++++
+                cpu.QuantumCount = 0; // Every time a process is dispatched, the quantum count for the CPU is reset 
+                if (cpu.Name == "CPU 2 (HRRN)") hrrnSort(cpu); //If the CPU is using HRRN scheduling then the process queue for that CPU is sorted before dispatching 
+
                 cpu.CurrentProcess = cpu.ProcessQueue.Dequeue();
                 Console.WriteLine("time " + TotalElapsedTime + ": " + cpu.CurrentProcess.Name + " dispatched to " + cpu.Name);
                 updateDisplay();
@@ -177,6 +180,7 @@ namespace UAH_CS490
             }
         }
 
+        // The method that sorts processes in the queue by their response ratio 
         private void hrrnSort(CPU cpu)
         {
             List<Process> tempList = new List<Process>();
@@ -194,6 +198,8 @@ namespace UAH_CS490
 
 
         }
+
+        // Right now this method is only called on the CPU scheduler , but it's structured such that it could be extended to other preemptive scheduling algorithms 
         private void preempt()
         {
             foreach (CPU cpu in Cores)
@@ -252,7 +258,7 @@ namespace UAH_CS490
             gui.setQueueTables();
             gui.setProcessLabels();
             gui.setTotalTimeLbl();
-            gui.setNTATAvgs();
+            gui.setNTATAvgs(); // +++++++++v3++++++++++
 
         }
 

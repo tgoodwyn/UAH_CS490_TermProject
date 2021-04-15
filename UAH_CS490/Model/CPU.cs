@@ -9,15 +9,17 @@ namespace UAH_CS490
 {
     class CPU
     {
-        //this class has 3 member variables and they are all private
-        //however they all have properties, which have getter and setter methods that allow the variables to be changed and referenced outside the class
-        private OS os;
-        private string name;
-        private Process currentProcess;
-        internal Process CurrentProcess { get => currentProcess; set => currentProcess = value; }
-        public string Name { get => name; set => name = value; }
-        internal OS OS { get => os; set => os = value; }
 
+        // +++++++++VERSION 3 NOTES+++++++++++++
+        // changes noted where they occur 
+        // ++++++++++++++++++++++++++++++++++++++++
+
+        //====================
+        // CPU data structures
+        //====================
+        // +++++++++UPDATE FOR VERSION 3+++++++++++++
+        // Results list and process queue now belong to the CPU objects .
+        // ++++++++++++++++++++++++++++++++++++++++++
         //we use a queue to store waiting processes
         //whenever a CPU becomes ready to execute a new process it grabs a new process from the queue
         //this queue is represented as a table in the GUI
@@ -33,13 +35,31 @@ namespace UAH_CS490
         private BindingList<Process> finishedProcs = new BindingList<Process>();
         internal BindingList<Process> FinishedProcs { get => finishedProcs; set => finishedProcs = value; }
 
-        // UPDATE FOR VERSION 3
+        //====================
+        // CPU references
+        //====================
+        //this class has 3 member variables and they are all private
+        //however they all have properties, which have getter and setter methods that allow the variables to be changed and referenced outside the class
+        private OS os;
+        private string name;
+        private Process currentProcess;
+        internal Process CurrentProcess { get => currentProcess; set => currentProcess = value; }
+        public string Name { get => name; set => name = value; }
+        internal OS OS { get => os; set => os = value; }
 
+
+
+        // +++++++++UPDATE FOR VERSION 3+++++++++++++
+        //====================
+        // scheduling variables
+        //====================
+        // round robin
         private int quantumCount;
         public int QuantumCount { get => quantumCount; set => quantumCount = value; }
-
+        // performance metric
         private float avgNTAT =0f;
         public float AvgNTAT { get => avgNTAT; set => avgNTAT = value; }
+        // ++++++++++++++++++++++++++++++++++++++++++
 
         //checks to see if it has a current process to execute
         //if yes then execute the process, calling executePs()
@@ -98,14 +118,14 @@ namespace UAH_CS490
                 TurnaroundTime = adjustedFinish - cp.ArrivalTime,
                 NormalizedTAT = (float)(adjustedFinish - cp.ArrivalTime) / (float)cp.ServiceTime
             });
-            //finishedProcs = finishedProcs.OrderBy(m => m.Name).ToList();
-            //finishedProcs.Sort((p, q) => p.Category.CompareTo(q.Category))
 
             currentProcess = null;
 
             calculateAvgNTAT();
         }
-
+        // ++++++++++++++++++++++++++++++++++++++++++
+        // new in v3 - a way to compare performance of different scheduling
+        // algos
         private void calculateAvgNTAT()
         {
             float sum = 0f;

@@ -9,6 +9,11 @@ namespace UAH_CS490
 
     class Process
     {
+        // +++++++++VERSION 3 NOTES+++++++++++++
+        // only addition to this class is the responseRatio property
+        // used by HRRN scheduling algo
+        // ++++++++++++++++++++++++++++++++++++++++
+
         //Initialize Variables
         //These are the variables used by the actual functions in the simulation
         //there is one for each of the columns in the data file and in the results table

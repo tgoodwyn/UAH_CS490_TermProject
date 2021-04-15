@@ -9,6 +9,13 @@ namespace UAH_CS490
     public partial class GUI : Form
     {
 
+        // +++++++++VERSION 3 NOTES+++++++++++++
+        // Most of changes to this class are only visible in the designer
+        // note, however that code for both tables has been duplicated,
+        // a field for entering RR time slice is added, and a display
+        // for avg NTAT
+        // ++++++++++++++++++++++++++++++++++++++++
+
         // static members related to selecting files
         public static readonly string homeDir = Directory.GetParent(Application.StartupPath).Parent.Parent.FullName; //path to solution directory, also has our default data file
         public static readonly string defaultFilePath = Path.Combine(homeDir, "TestData.csv"); // full path to default data file
@@ -57,6 +64,9 @@ namespace UAH_CS490
             OS.quantumMax = int.Parse(timesliceField.Text);
 
         }
+        // ++++++++++++++++++++++++++++++++++++++++++
+        // new in v3 - now there are two results tables, two queue tables
+        // ++++++++++++++++++++++++++++++++++++++++++
 
         //making a table for data results from finished executions
         private void formatResultsTables()
@@ -216,12 +226,13 @@ namespace UAH_CS490
         // the current state of each CPU and their executing processes
         public void setProcessLabels()
         {
-            if (os.CPU1.CurrentProcess !=null)
+            if (os.CPU1.CurrentProcess != null)
             {
-            cpu1ProcNameLbl.Text = os.CPU1.CurrentProcess.Name;
-            cpu1ProcTimeLbl.Text = os.CPU1.CurrentProcess.TimeRemaining.ToString();
+                cpu1ProcNameLbl.Text = os.CPU1.CurrentProcess.Name;
+                cpu1ProcTimeLbl.Text = os.CPU1.CurrentProcess.TimeRemaining.ToString();
 
-            } else
+            }
+            else
             {
                 cpu1ProcNameLbl.Text = "idle";
                 cpu1ProcTimeLbl.Text = "n/a";
@@ -238,11 +249,12 @@ namespace UAH_CS490
                 cpu2ProcTimeLbl.Text = "n/a";
             }
         }
-
+        // ++++++++++++++++++++++++++++++++++++++++++
+        // new in v3 - the label to compare performance of different scheduling algos
         public void setNTATAvgs()
         {
-            cpu1AVGNTATLabel.Text = Math.Round(os.CPU1.AvgNTAT,2).ToString();
-            cpu2AVGNTATLabel.Text = Math.Round(os.CPU2.AvgNTAT,2).ToString();
+            cpu1AVGNTATLabel.Text = Math.Round(os.CPU1.AvgNTAT, 2).ToString();
+            cpu2AVGNTATLabel.Text = Math.Round(os.CPU2.AvgNTAT, 2).ToString();
 
         }
 
@@ -265,11 +277,13 @@ namespace UAH_CS490
             loaded = false;
             os.resetOS();
         }
-
         private void timesliceField_TextChanged(object sender, EventArgs e)
         {
         }
-    private void verifyTimesliceField()
+
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // new in v3 - verifies that time slice input is actually ant
+        private void verifyTimesliceField()
         {
             try
             {
